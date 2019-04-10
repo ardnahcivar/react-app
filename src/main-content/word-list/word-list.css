@@ -1,0 +1,11 @@
+/* .word-list{
+    display: inline;
+} */
+
+.word{
+    display: inline-block;
+    border: 1px solid black;
+    width: 15em;
+    height: 5em;
+    margin: 1em;
+}
