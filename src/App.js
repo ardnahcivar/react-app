@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import {BrowserRouter} from 'react-router-dom';
 import './App.css';
 import Header from './header/header';
 import Main from './main-content/main';
@@ -7,11 +7,12 @@ import Main from './main-content/main';
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <Main />
-        <h1>HEY</h1>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Main />
+        </div>
+      </BrowserRouter>
     );
   }
 }

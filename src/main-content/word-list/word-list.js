@@ -3,8 +3,8 @@ import './word-list.css';
 
  const wordList = (props) =>{
     return (
-        <div className="wordl-ist">
-            {props.names.map((name) => <div className="word">{name}</div>)}
+        <div className="word-list">
+            {props.names.map((word) => <div key={word.sha} className="word" onClick={() => props.click(word)}>{word.name}</div>)}
         </div>
     )
 }
