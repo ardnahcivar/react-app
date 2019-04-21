@@ -1,74 +1,34 @@
 import React,{Component} from 'react';
-import WordList from './../word-list/word-list';
+import './home.css';
 
 
 export default class Home extends Component{
-    filterWordList = [];
-    createInputText = '';
-
+  
     constructor(props){
         super(props);
-        this.state = {
-            names:[],
-            filternames: []
-        }
-        this.Search = this.Search.bind(this);
-        this.onClickHandler = this.onClickHandler.bind(this);
     }
 
     componentDidMount(){
         console.log(this.props);
-        fetch('https://api.github.com/repos/adityakamble49/wordlist-marketplace/contents/wordlists')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            this.setState({
-                names:data
-            })
-        })
-    }
+    }   
 
     render(){
         return (
             <div>
-                <p> it is a form</p>
-                <form>
-                    <input onChange={this.createInputChange} type="text" placeholder="createa word list" />
-                    <button onClick={this.create}>CREATE</button>
-                    <input type="text" placeholder="search"  onChange={this.Search}/>
-                    <button onClick={this.Search}>SEARCH</button>
-                </form>
-                <div>
-                    <WordList names={this.state.names} click={this.onClickHandler}/>
+                <div className="description"></div>
+                <div className="actions">
+                    <button onClick={this.learn}>LEARN</button>
+                    <button onClick={this.practice}>PRACTICE</button>
                 </div>
-            
             </div>
         )
     }
 
-
-    createInputChange = (event) => {
-        this.createInputText = event.target.value;
+    learn = () => {
+        this.props.history.push('/learn');
     }
 
-    Search = (event) => {
-        const value = event.target.value.toLowerCase();
-        this.setState({
-            filternames:this.state.names.filter(name => name.toLowerCase().includes(value))
-        })
-        console.log(this.state.filternames);
-        event.preventDefault();
-    }
-
-    create = (event) => {
-        const newState = this.state.names.concat(this.createInputText);
-        if(newState.length){
-            this.setState({names:newState});
-        }
-        event.preventDefault();
-    }
-
-    onClickHandler = (word) => {
-        this.props.history.push({pathname:'/'+word.sha});
+    practice =() => {
+        this.props.history.push('/practice');
     }
 }

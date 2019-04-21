@@ -1,0 +1,29 @@
+.word-item{
+    width: 200px;
+    height: 60px;
+    background:  #cacaca;
+    border: 1px solid #cacaca;
+    margin: 1em;
+    /* animation: item 1200ms infinite; */
+}
+
+@keyframes item{
+    0%{
+        transform: rotate(0deg) scale(1);
+    }
+    25%{
+        transform: rotate(15deg) scale(1.2);
+    }
+    50%{
+        transform: rotate(0deg) scale(1);
+
+    }
+    75%{
+        transform: rotate(15deg) scale(1.2);
+
+    }
+    100%{
+        transform: rotate(0deg) scale(1);
+
+    }
+}

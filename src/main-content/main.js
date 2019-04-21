@@ -1,21 +1,21 @@
-import React,{Component} from 'react';
+import React from 'react';
 import {Route,Redirect,Switch} from 'react-router-dom';
 import  './main.css';
 import Home from './home/home';
-import Detail from './detail/detail';
+import Learn from './learn/learn';
+import Practice from './practice/practice';
 
-export default class Main extends Component{
-  
-    render(){
+const Main  = () =>{  
         return (
             <main>
                 <Switch>
                     <Route path="/home" exact component={Home}/>
-                    <Route path="/:id" exact component={Detail}/>
+                    <Route path="/learn" component={Learn} />
+                    <Route path="/practice" component={Practice} />
                     <Redirect from="/" to="/home" />
                 </Switch>
             </main>
         )
-    }
 }
 
+export default Main;

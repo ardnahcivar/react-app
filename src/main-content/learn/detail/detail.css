@@ -1,0 +1,15 @@
+
+.word-container{
+    display: flex;
+}
+
+.word-grid{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+aside{
+    display: inline-block;
+    width: 40%;
+}
