@@ -35,6 +35,10 @@ export default class Detail extends Component{
             list.map((word) => <Word  key={word.name + word.type} name={word.name} type={word.type} click={() => this.clickHandler(word)}/>) 
         ):null; 
         return (
+            <>
+            <div className="container-title"> 
+                <h1>{this.selectedDetails && this.selectedDetails.name.replace('.json','')}</h1>
+            </div>
             <div className="word-container">
                 <div className="word-grid">
                     {res}
@@ -43,6 +47,7 @@ export default class Detail extends Component{
                     <Side  {...this.state.selectWord}/>
                 </aside>
             </div>
+            </>
             
         )
     }

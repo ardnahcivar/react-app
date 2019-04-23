@@ -71,8 +71,6 @@ export default class Home extends Component {
     }
 
     onClickHandler = (word,list) => {
-        console.log(this.props.match.url+'/'+word.sha);
-        debugger
         this.props.history.push({pathname:this.props.match.url+'/'+word.sha,state:{names:list}});
     }
 }
