@@ -1,7 +1,7 @@
 .word-item{
     width: 200px;
     height: 60px;
-    background:  #cacaca;
+    background:  #f1f1f1;
     border: 1px solid #cacaca;
     margin: 1em;
     /* animation: item 1200ms infinite; */

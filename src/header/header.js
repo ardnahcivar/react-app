@@ -10,7 +10,7 @@ class Header extends Component{
     render(){
         return (
             <header>
-                <h1>it is a header</h1>
+                <a href="/ ">Home</a>
             </header>
         )
     }

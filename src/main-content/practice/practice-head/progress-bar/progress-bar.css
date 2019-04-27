@@ -1,0 +1,19 @@
+.progress-container{
+    width:400px;
+    height: 10px;
+    border-radius: 10px;
+    background: #cacaca;
+}
+
+.progress{
+    background: lightblue;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.progress-count{
+    float: right;
+    position: relative;
+    top:-18px;
+    right: -62px;
+}

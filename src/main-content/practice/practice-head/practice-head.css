@@ -1,0 +1,9 @@
+.practice-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-box,.progress-box{
+    width: 50%;
+}

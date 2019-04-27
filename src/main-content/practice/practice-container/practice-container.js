@@ -1,15 +1,17 @@
 import React,{Component}from 'react';
 import Head from './../practice-head/practice-head';
 import Word from './../practice-word/practice-word';
+import './practice-container.css';
 
 export default class PracticeContainer extends Component {
     
     marketList = [];
     selectedId = '';
-    
+
     constructor(props){
         super(props);
-        this.state = {selected:{},words:[]};
+        this.state = {selected:{},words:[],wordIndex: -1};
+        this.nextWord = this.nextWord.bind(this);
     }
 
     componentDidMount(){
@@ -19,17 +21,34 @@ export default class PracticeContainer extends Component {
         fetch(selectedObj.download_url)
         .then(resonse => resonse.json())
         .then(data => {
-            this.setState({words:data,selected:selectedObj});
+            this.setState({words:data,
+                selected:selectedObj,
+                wordIndex:Math.floor (Math.random() * data.length)
+            });
         })
+    }
+
+
+    nextWord = () => {
+        if(this.state.wordIndex >= this.state.words.length){
+            this.setState({
+                wordIndex: 0
+            });
+        }else{
+            this.setState({
+                wordIndex: this.state.wordIndex + 1
+            });
+        }
     }
 
     render(){
         return(
             <div>
-                <Head title={this.state.selected.name}  />
+                <Head title={this.state.selected.name} total={this.state.words.length} value={this.state.wordIndex}  />
                 <div className="practice-container">
                     <Word word = { this.state.words &&
-                        this.state.words[Math.floor (Math.random() * this.state.words.length)]} 
+                        this.state.words[this.state.wordIndex]}
+                        nextWord={this.nextWord} 
                     />
                 </div>
             </div>
