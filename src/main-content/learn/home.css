@@ -1,0 +1,25 @@
+form{
+    margin: 1em;
+}
+
+form input{
+    height:2rem;
+    margin: 1em;
+    width: 20em;
+}
+
+form button{
+    height: 2rem;
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+}
+
+form .word-create{
+    letter-spacing: 1px;
+}
+
+#searchword{
+    float: right;
+}
