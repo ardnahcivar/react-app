@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import WordList from './word-list/word-list';
 import {MARKETPLACE_URL} from '../../assets/urls'; 
+import Aux from  './../../hoc/auxy';
+import styles from './home.module.css';
 
 export default class Home extends Component {
 
@@ -32,18 +34,17 @@ export default class Home extends Component {
 
     render(){
         return (
-            <div>
-                <p> it is a form</p>
-                <form>
-                    <input onChange={this.createInputChange} type="text" placeholder="createa word list" />
-                    <button onClick={this.create}>CREATE</button>
-                    <input type="text" placeholder="search"  onChange={this.Search}/>
-                    <button onClick={this.Search}>SEARCH</button>
+            <Aux>
+                <form id={styles.wordList}> 
+                    <label for="wordname">Name</label>
+                    <input id="wordname" type="text" placeholder="create a wordlist" />
+                    <button className="word-create" onClick={this.create}>CREATE</button>
+                    <input id={styles.searchWord} type="text" placeholder="Search"/>
                 </form>
-                <div>
+                <Aux>
                     <WordList names={this.state.names} click={this.onClickHandler}/>
-                </div>
-            </div>
+                </Aux>
+            </Aux>
         )
 
     }

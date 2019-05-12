@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import './practice-word.css';
-
+import styles from  './practice-word.module.css';
+import MdSpeakerIcon from 'react-icons/lib/md/volume-up';
 export default class PracticeWord extends Component{
     
 
@@ -22,7 +22,7 @@ export default class PracticeWord extends Component{
     render(){
         let meaning,next;
         if(this.state.showMeaning){
-            meaning = <div className="wordinfo"> <p>{ this.props.word && this.props.word.information}</p>  </div>
+            meaning = <div className={styles.wordInfo}> <p>{ this.props.word && this.props.word.information}</p>  </div>
             next = <p onClick={this.nextWord}>See next Word</p>;
         }else{
             meaning  = null;
@@ -30,14 +30,16 @@ export default class PracticeWord extends Component{
         }
 
         return (
-            <div className="word-info-container">
-                <div className="word-box">
-                    <div className="title"> 
-                        <p className="word">{ this.props.word && this.props.word.name}</p>
-                        <p className="type">{ this.props.word && this.props.word.type}</p>  
+            <div className={styles.wordinfoContainer}>
+                <div className={styles.wordBox}>
+                    <div className={styles.title}> 
+                        <p className={styles.word}>{ this.props.word && this.props.word.name}
+                            <span onClick={() => this.readOut()} className={styles.readoutIcon}><MdSpeakerIcon /></span>
+                        </p>
+                        <p className={styles.type}>{ this.props.word && this.props.word.type}</p>  
                     </div>
                     { meaning }
-                    <div className="word-meaning">
+                    <div className={styles.wordMeaning}>
                         {next}
                     </div>
                 </div>
@@ -52,5 +54,14 @@ export default class PracticeWord extends Component{
     nextWord = () => {
         this.props.nextWord();
         this.toggleMeaning();
+    }
+
+    readOut = (word = this.props.word.name) => {
+        const sp = new SpeechSynthesisUtterance();
+        sp.text = word;
+        sp.volume = 1;
+        sp.rate = 1;
+        sp.pitch = 1;
+        window.speechSynthesis.speak(sp);
     }
 }

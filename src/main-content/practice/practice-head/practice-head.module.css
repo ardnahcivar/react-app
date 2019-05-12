@@ -1,0 +1,13 @@
+.practiceHead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.practiceHead .titleBox{
+    font-size:1.5em; 
+}
+
+.practiceHead .titleBox,.practiceHead .progressBox{
+    width: 50%;
+}

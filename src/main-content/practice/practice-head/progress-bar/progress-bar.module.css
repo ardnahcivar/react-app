@@ -1,17 +1,17 @@
-.progress-container{
+.progressContainer{
     width:400px;
     height: 10px;
     border-radius: 10px;
     background: #cacaca;
 }
 
-.progress{
-    background: lightblue;
+.progressContainer .progress{
+    background-color: #007bff;
     height: 10px;
     border-radius: 10px;
 }
 
-.progress-count{
+.progressContainer .progressCount{
     float: right;
     position: relative;
     top:-18px;

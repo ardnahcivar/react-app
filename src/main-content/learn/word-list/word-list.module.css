@@ -1,0 +1,16 @@
+.wordList{
+    display: flex;
+    flex-wrap: wrap;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.word{
+    display: inline-block;
+    width: 15em;
+    height: 5em;
+    margin: 1em;
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    cursor: pointer;
+}

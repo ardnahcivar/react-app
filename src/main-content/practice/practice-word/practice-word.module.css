@@ -1,0 +1,55 @@
+.wordinfoContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.wordBox{
+    width: 600px;
+    box-sizing: border-box;
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+
+.wordBox .title,.wordInfo{
+    padding: 1em;
+}
+
+.title p {
+    margin: 0;
+}
+
+.wordInfo p {
+    margin: 0;
+}
+
+
+.wordBox .title .word{
+    font-size: 24px;
+}
+
+.wordMeaning{
+    text-align: center;
+    background: #4CAF50;
+    color: #fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.wordMeaning p {
+    margin: 0;
+}
+
+.readoutIcon svg{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin: 0 10px;
+    padding: 5px;
+    color: grey;
+    background: #fff;
+    border: 1px solid;
+    cursor: pointer;
+}

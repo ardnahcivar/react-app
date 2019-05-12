@@ -1,9 +1,10 @@
-.word-item{
+.wordItem{
     width: 200px;
     height: 60px;
     background:  #f1f1f1;
     border: 1px solid #cacaca;
     margin: 1em;
+    cursor: pointer;
     /* animation: item 1200ms infinite; */
 }
 

@@ -1,6 +1,6 @@
 import React,{Component}from 'react';
 import ProgressBar from './progress-bar/progress-bar';
-import './practice-head.css';
+import styles from './practice-head.module.css';
 
 export default class HeadPractice extends Component{
 
@@ -10,9 +10,9 @@ export default class HeadPractice extends Component{
 
     render(){
         return (
-            <div className="practice-head">
-                <p className="title-box">{this.props.title && this.props.title.replace('.json',' ')}</p>
-                <ProgressBar className="progess-box" total={this.props.total} value={this.props.value} />
+            <div className={styles.practiceHead}>
+                <p className={styles.titleBox}>{this.props.title && this.props.title.replace('.json',' ')}</p>
+                <ProgressBar className={styles.progessBox} total={this.props.total} value={this.props.value} />
             </div>
         )
     }

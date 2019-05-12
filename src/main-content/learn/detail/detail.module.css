@@ -1,15 +1,15 @@
 
-.word-container{
+.wordContainer{
     display: flex;
 }
 
-.word-grid{
+.wordGrid{
     width: 60%;
     display: flex;
     flex-wrap: wrap;
 }
 
-aside{
+.wordContainer aside{
     display: inline-block;
     width: 40%;
 }

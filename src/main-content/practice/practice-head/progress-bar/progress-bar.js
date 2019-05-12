@@ -1,5 +1,5 @@
 import React,{Component}from 'react';
-import './progress-bar.css';
+import styles from  './progress-bar.module.css';
 
 
 export default class ProgressBar extends Component{
@@ -37,9 +37,9 @@ export default class ProgressBar extends Component{
         const p = prog / 100 * 400;
         const width = {width:p || 0};
         return (
-                <div className="progress-container"> 
-                    <div className="progress" style={width}></div>
-                    <span className="progress-count">
+                <div className={styles.progressContainer}> 
+                    <div className={styles.progress} style={width}></div>
+                    <span className={styles.progressCount}>
                         {this.state.value - this.state.initial} / {this.state.total}
                     </span>
                 </div>

@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import './home.css';
+import Aux from './../../hoc/auxy';
+import styles from  './home.module.css';
 
 
 export default class Home extends Component{
@@ -14,13 +15,15 @@ export default class Home extends Component{
 
     render(){
         return (
-            <div>
-                <div className="description"></div>
-                <div className="actions">
-                    <button onClick={this.learn}>LEARN</button>
-                    <button onClick={this.practice}>PRACTICE</button>
+            <Aux>
+                <div className={`description ${styles.fiftyWH}`}></div>
+                <div className={`actions ${styles.fiftyWH} ${styles.floatRight}`}>
+                    <div className={styles.actionsContainer}>
+                        <button tabIndex="1" className={styles.actionsBtn} onClick={this.learn}>LEARN</button>
+                        <button tabIndex="2" className={styles.actionsBtn} onClick={this.practice}>PRACTICE</button>
+                    </div>
                 </div>
-            </div>
+            </Aux>
         )
     }
 

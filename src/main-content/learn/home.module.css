@@ -1,14 +1,14 @@
-form{
+#wordList{
     margin: 1em;
 }
 
-form input{
+#wordList input{
     height:2rem;
     margin: 1em;
     width: 20em;
 }
 
-form button{
+#wordList button{
     height: 2rem;
     color: #fff;
     background-color: #007bff;
@@ -16,10 +16,10 @@ form button{
     cursor: pointer;
 }
 
-form .word-create{
+#wordList .word-create{
     letter-spacing: 1px;
 }
 
-#searchword{
+#wordList #searchWord{
     float: right;
 }

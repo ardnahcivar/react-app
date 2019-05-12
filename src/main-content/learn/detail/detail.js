@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import Word from './word-grid/word-grid';
-import './detail.css'
 import Side from './side/side';
+import Aux from './../../../hoc/auxy';
+import styles from './detail.module.css'
 
 export default class Detail extends Component{
     
@@ -35,19 +36,19 @@ export default class Detail extends Component{
             list.map((word) => <Word  key={word.name + word.type} name={word.name} type={word.type} click={() => this.clickHandler(word)}/>) 
         ):null; 
         return (
-            <>
-            <div className="container-title"> 
-                <h1>{this.selectedDetails && this.selectedDetails.name.replace('.json','')}</h1>
-            </div>
-            <div className="word-container">
-                <div className="word-grid">
-                    {res}
+            <Aux>
+                <div className="container-title"> 
+                    <h1>{this.selectedDetails && this.selectedDetails.name.replace('.json','')}</h1>
                 </div>
-                <aside>
-                    <Side  {...this.state.selectWord}/>
-                </aside>
-            </div>
-            </>
+                <div className={styles.wordContainer}>
+                    <div className={styles.wordGrid}>
+                        {res}
+                    </div>
+                    <aside>
+                        <Side  {...this.state.selectWord}/>
+                    </aside>
+                </div>
+            </Aux>
             
         )
     }

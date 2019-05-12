@@ -1,7 +1,8 @@
 import React,{Component}from 'react';
 import Head from './../practice-head/practice-head';
 import Word from './../practice-word/practice-word';
-import './practice-container.css';
+import Aux from './../../../hoc/auxy';
+import styles from './practice-container.module.css';
 
 export default class PracticeContainer extends Component {
     
@@ -43,15 +44,15 @@ export default class PracticeContainer extends Component {
 
     render(){
         return(
-            <div>
+            <Aux>
                 <Head title={this.state.selected.name} total={this.state.words.length} value={this.state.wordIndex}  />
-                <div className="practice-container">
+                <div className={styles.practiceContainer}>
                     <Word word = { this.state.words &&
                         this.state.words[this.state.wordIndex]}
                         nextWord={this.nextWord} 
                     />
                 </div>
-            </div>
+            </Aux>
         )
     }
 }
