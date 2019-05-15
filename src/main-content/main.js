@@ -5,7 +5,7 @@ import Home from './home/home';
 import Learn from './learn/learn';
 import Practice from './practice/practice';
 
-const Main  = () =>{  
+const Main  = () => {  
         return (
             <main>
                 <Switch>

@@ -1,10 +1,11 @@
 
 .wordContainer{
     display: flex;
+    justify-content: center;
 }
 
 .wordGrid{
-    width: 60%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -12,4 +13,69 @@
 .wordContainer aside{
     display: inline-block;
     width: 40%;
+}
+
+.wordBlock{
+    width: 100%;
+}
+
+.wordNameContainer{
+    width: 30%;
+    display: inline-block;
+}
+.wordName{
+    font-size:5em;
+    margin-bottom: 0;
+    word-break: break-word; 
+}
+
+.wordPronun{
+    font-size: 1.2em;
+}
+
+.wordinfoContainer{
+    width: 70%;
+    display: inline-block;
+    float: right;
+}
+
+.wordType{
+    font-size: 1.5em;
+}
+
+.wordInfon{
+    font-size: 1em;
+}
+
+.bookMark{
+    float: right;
+    margin-right: 3em;
+}
+
+.bookMark svg{
+    font-size: 2em;
+    color: gray;
+    cursor: pointer;
+}
+
+.bookMark svg:hover{
+    color: #4CAF50;
+}
+
+.goUp{
+    position: fixed;
+    right: 1em;
+    top: 5em;
+}
+
+.goUp .upArrow{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid gray;
+}
+
+.upArrow svg{
+    font-size: 3em;
+    cursor: pointer;
 }

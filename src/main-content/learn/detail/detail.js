@@ -3,7 +3,8 @@ import Word from './word-grid/word-grid';
 import Side from './side/side';
 import Aux from './../../../hoc/auxy';
 import styles from './detail.module.css'
-
+import MdBookmark from 'react-icons/lib/md/bookmark-outline';
+import MdArrowUpward from 'react-icons/lib/md/arrow-upward';
 export default class Detail extends Component{
     
     selectedId = null;
@@ -26,17 +27,44 @@ export default class Detail extends Component{
         .then(resonse => resonse.json())
         .then(data => {
             this.words = data;
-            this.setState({words:data});
+            this.setState({words:data},()=>{
+                this.scrollIntoWord();
+                // inadvertent1557932034874'
+            });
         })
     }
 
     render(){
-        const list = this.state.words.slice(this.startIndex,this.endIndex);
+        // const list = this.state.words.slice(this.startIndex,this.endIndex);
+        const list = this.state.words;
         let res = list.length > 0 ? (
-            list.map((word) => <Word  key={word.name + word.type} name={word.name} type={word.type} click={() => this.clickHandler(word)}/>) 
+            list.map((word) => {
+            //  <Word  key={word.name + word.type} name={word.name} type={word.type} click={() => this.clickHandler(word)}/>
+             
+             return (
+                <div id={word.name + word.type} key={word.name + Date.now()} onClick={this.bookMarkIt} className={styles.wordBlock}>
+                    <div className={styles.wordNameContainer}>
+                        <p className={styles.wordName}>{word.name}</p>
+                        <p className={styles.wordPronun}>{word.pronunciation}</p>
+                        <span className={styles.bookMark}>
+                            <MdBookmark />
+                        </span>
+                    </div>
+                    <div className={styles.wordinfoContainer}>
+                        <p className={styles.wordType}>{word.type}</p>
+                        <p className={styles.wordInfon}>{word.information}</p>
+                        <p className={styles.wordInfon}>{word.mnemonic}</p>
+                    </div>
+                </div>)
+            }) 
         ):null; 
         return (
             <Aux>
+                <div className={styles.goUp}>
+                    <div className={styles.upArrow} onClick={() => document.getElementById('root').scrollIntoView()}>
+                        <MdArrowUpward />
+                    </div>
+                </div>
                 <div className="container-title"> 
                     <h1>{this.selectedDetails && this.selectedDetails.name.replace('.json','')}</h1>
                 </div>
@@ -44,9 +72,25 @@ export default class Detail extends Component{
                     <div className={styles.wordGrid}>
                         {res}
                     </div>
-                    <aside>
+                    {/* <aside>
                         <Side  {...this.state.selectWord}/>
-                    </aside>
+                    </aside> */}
+
+                    {/* <div className={styles.wordGrid}>
+                            <div className="word-block">
+                                    <div className="word-name">
+                                    <p>zenith</p>
+                                    </div>
+                                    <div className="word-info-container">
+                                        <p className="word-type">noun</p>
+                                        <p className="word-infon">
+                                        Definition: High point, culmination Usage: At the zenith of her career, the actress could command $5 million per film. Now, she is mostly seen in made-for-TV movies. Related Words: Acme, Summit, Pinnacle (synonyms), Apex (vertix, tip, point), Apogee (high point, point at which the moon is furthest from the Earth) More Info: The opposite of the zenith is the nadir, or lowest point. Both words are terms from astronomy, referring to points directly above and below the observer on an imaginary sphere on which celestial bodies appear to be projected. On the GRE, these words will be used metaphorically —the nadir of one’s struggles, the zenith of one’s success.
+                                        </p>
+                                    </div>
+                            </div>
+                    </div> */}
+
+
                 </div>
             </Aux>
             
@@ -58,6 +102,19 @@ export default class Detail extends Component{
         this.setState({
             selectWord:word
         })
+    }
+
+
+    bookMarkIt = (e) => {
+        const bookId = e.currentTarget.id;
+        localStorage.setItem('bookMarker',bookId);
+        e.preventDefault();
+    }
+
+
+    scrollIntoWord = () => {
+        const element = document.querySelector(`#${localStorage.getItem('bookMarker')}`);
+        element.scrollIntoView();
     }
 
     showNext = () => {

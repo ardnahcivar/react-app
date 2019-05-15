@@ -37,8 +37,8 @@ export default class Home extends Component {
             <Aux>
                 <form id={styles.wordList}> 
                     <label for="wordname">Name</label>
-                    <input id="wordname" type="text" placeholder="create a wordlist" />
-                    <button className="word-create" onClick={this.create}>CREATE</button>
+                    <input id="wordname" type="text" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
+                    <button className="word-create" onClick={(e) => this.create(e)}>CREATE</button>
                     <input id={styles.searchWord} type="text" placeholder="Search"/>
                 </form>
                 <Aux>
@@ -64,9 +64,13 @@ export default class Home extends Component {
     }
 
     create = (event) => {
-        const newState = this.state.names.concat(this.createInputText);
-        if(newState.length){
-            this.setState({names:newState});
+        if(this.createInputText.trim().length){
+            const newState = this.state.names.concat({name:this.createInputText});
+            if(newState.length){
+                this.setState({names:newState});
+            }
+        }else{
+            alert('failed to create');
         }
         event.preventDefault();
     }
