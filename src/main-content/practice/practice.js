@@ -5,11 +5,6 @@ import PracticeContainer from './practice-container/practice-container';
 
 
 export default class Practice extends Component{
-    
-    constructor(props){
-        super(props);
-    }
-
     render(){
         return (
             <Switch>

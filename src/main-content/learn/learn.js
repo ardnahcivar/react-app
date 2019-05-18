@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 import {Route,Switch,Redirect } from 'react-router-dom';
 import  Detail  from  './detail/detail';
 import Home from './home';

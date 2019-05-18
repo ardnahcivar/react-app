@@ -62,6 +62,10 @@
     color: #4CAF50;
 }
 
+.bookMarked svg{
+    color: #4CAF50;
+}
+
 .goUp{
     position: fixed;
     right: 1em;
@@ -78,4 +82,11 @@
 .upArrow svg{
     font-size: 3em;
     cursor: pointer;
+}
+
+.spinner{
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    font-size: 2px;
 }

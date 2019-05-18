@@ -23,3 +23,9 @@
 #wordList #searchWord{
     float: right;
 }
+.spinner{
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    font-size: 2px;
+}

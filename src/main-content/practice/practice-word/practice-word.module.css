@@ -53,3 +53,11 @@
     border: 1px solid;
     cursor: pointer;
 }
+.spinner{
+    height: 50px;
+    width: 50px;
+    /* margin: 0 auto; */
+    display: inline-block;
+    font-size: 2px;
+    vertical-align: middle;
+}

@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import styles from  './practice-word.module.css';
 import MdSpeakerIcon from 'react-icons/lib/md/volume-up';
+import Spinner from './../../../components/spinner/spinner';
+
 export default class PracticeWord extends Component{
     
 
@@ -9,17 +11,20 @@ export default class PracticeWord extends Component{
         this.state = {
             showMeaning:false
         }
+        this.showSpinner = true;
     }
 
 
     componentDidMount(){
+        this.showSpinner = false;
     }
 
     componentDidUpdate(){
     }
 
-
     render(){
+        const spinner = this.showSpinner ? <div className={styles.spinner}><Spinner /> </div> : null;
+
         let meaning,next;
         if(this.state.showMeaning){
             meaning = <div className={styles.wordInfo}> <p>{ this.props.word && this.props.word.information}</p>  </div>
@@ -34,6 +39,8 @@ export default class PracticeWord extends Component{
                 <div className={styles.wordBox}>
                     <div className={styles.title}> 
                         <p className={styles.word}>{ this.props.word && this.props.word.name}
+                        {spinner}
+
                             <span onClick={() => this.readOut()} className={styles.readoutIcon}><MdSpeakerIcon /></span>
                         </p>
                         <p className={styles.type}>{ this.props.word && this.props.word.type}</p>  

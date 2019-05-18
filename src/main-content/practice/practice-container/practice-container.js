@@ -3,7 +3,6 @@ import Head from './../practice-head/practice-head';
 import Word from './../practice-word/practice-word';
 import Aux from './../../../hoc/auxy';
 import styles from './practice-container.module.css';
-
 export default class PracticeContainer extends Component {
     
     marketList = [];
@@ -13,6 +12,7 @@ export default class PracticeContainer extends Component {
         super(props);
         this.state = {selected:{},words:[],wordIndex: -1};
         this.nextWord = this.nextWord.bind(this);
+        this.showSpinner = true;
     }
 
     componentDidMount(){
@@ -27,6 +27,7 @@ export default class PracticeContainer extends Component {
                 wordIndex:Math.floor (Math.random() * data.length)
             });
         })
+        this.showSpinner = false;
     }
 
 

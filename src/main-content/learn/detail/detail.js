@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
-import Word from './word-grid/word-grid';
-import Side from './side/side';
 import Aux from './../../../hoc/auxy';
+import Spinner from './../../../components/spinner/spinner';
 import styles from './detail.module.css'
 import MdBookmark from 'react-icons/lib/md/bookmark-outline';
 import MdArrowUpward from 'react-icons/lib/md/arrow-upward';
+import MdBookmarkFill from 'react-icons/lib/md/bookmark';
+
 export default class Detail extends Component{
     
     selectedId = null;
@@ -17,6 +18,9 @@ export default class Detail extends Component{
         this.startIndex = 0;
         this.wordLength = 20;
         this.endIndex = this.startIndex + this.wordLength;
+        this.bookmarker = localStorage.getItem('bookMarker');
+        this.bookmarkerFlag = false;
+        this.showSpinner = true;
     }
 
     componentDidMount(){
@@ -32,23 +36,32 @@ export default class Detail extends Component{
                 // inadvertent1557932034874'
             });
         })
+        this.showSpinner = false;
     }
 
     render(){
         // const list = this.state.words.slice(this.startIndex,this.endIndex);
+        const spinner = this.showSpinner ? <div className={styles.spinner}><Spinner /> </div> : null;
         const list = this.state.words;
         let res = list.length > 0 ? (
             list.map((word) => {
             //  <Word  key={word.name + word.type} name={word.name} type={word.type} click={() => this.clickHandler(word)}/>
-             
+            this.bookmarkerFlag = (word.name + word.type) === this.bookmarker;
              return (
-                <div id={word.name + word.type} key={word.name + Date.now()} onClick={this.bookMarkIt} className={styles.wordBlock}>
+                <div id={word.name + word.type} key={word.name + word.type } onClick={this.bookMarkIt} className={styles.wordBlock}>
                     <div className={styles.wordNameContainer}>
                         <p className={styles.wordName}>{word.name}</p>
                         <p className={styles.wordPronun}>{word.pronunciation}</p>
+                        {this.bookmarkerFlag ?
+                        <span className={[styles.bookMark,styles.bookMarked].join(' ')}>
+                            <MdBookmarkFill />
+                        </span>
+                        :
                         <span className={styles.bookMark}>
                             <MdBookmark />
                         </span>
+                        }
+                        
                     </div>
                     <div className={styles.wordinfoContainer}>
                         <p className={styles.wordType}>{word.type}</p>
@@ -60,6 +73,7 @@ export default class Detail extends Component{
         ):null; 
         return (
             <Aux>
+                {spinner}
                 <div className={styles.goUp}>
                     <div className={styles.upArrow} onClick={() => document.getElementById('root').scrollIntoView()}>
                         <MdArrowUpward />
@@ -114,7 +128,7 @@ export default class Detail extends Component{
 
     scrollIntoWord = () => {
         const element = document.querySelector(`#${localStorage.getItem('bookMarker')}`);
-        element.scrollIntoView();
+        if(element) element.scrollIntoView();
     }
 
     showNext = () => {

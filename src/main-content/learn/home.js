@@ -3,6 +3,7 @@ import WordList from './word-list/word-list';
 import {MARKETPLACE_URL} from '../../assets/urls'; 
 import Aux from  './../../hoc/auxy';
 import styles from './home.module.css';
+import Spinner from './../../components/spinner/spinner';
 
 export default class Home extends Component {
 
@@ -17,6 +18,7 @@ export default class Home extends Component {
         }
         this.Search = this.Search.bind(this);
         this.onClickHandler = this.onClickHandler.bind(this);
+        this.showSpinner = true;
     }
 
 
@@ -28,11 +30,13 @@ export default class Home extends Component {
             console.log(data);
             this.setState({
                 names:data
-            })
-        })
+            });
+        });
+        this.showSpinner = false;
     }
 
     render(){
+        const spinner = this.showSpinner ? <div className={styles.spinner}><Spinner /> </div> : null;
         return (
             <Aux>
                 <form id={styles.wordList}> 
@@ -41,6 +45,7 @@ export default class Home extends Component {
                     <button className="word-create" onClick={(e) => this.create(e)}>CREATE</button>
                     <input id={styles.searchWord} type="text" placeholder="Search"/>
                 </form>
+                {spinner}
                 <Aux>
                     <WordList names={this.state.names} click={this.onClickHandler}/>
                 </Aux>
