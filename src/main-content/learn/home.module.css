@@ -24,8 +24,10 @@
     float: right;
 }
 .spinner{
-    height: 200px;
-    width: 200px;
-    margin: 0 auto;
+    height: 10vh;
+    width: 10vh;
+    position: fixed;
+    left: 40%;
+    top:35%;
     font-size: 2px;
 }

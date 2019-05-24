@@ -2,12 +2,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #eaeaea;
+    position: sticky;
+    top: 60px;
+    background: white;
+    z-index: 999;
 }
 
 .practiceHead .titleBox{
-    font-size:1.5em; 
+    font-size:1em;
+    text-align: center; 
 }
 
 .practiceHead .titleBox,.practiceHead .progressBox{
-    width: 50%;
+    width: 30%;
+    /* padding: 0 1em; */
 }
+
+ 
+@media screen and (max-width: 480px) and (orientation:portrait) {
+    .practiceHead .titleBox{
+        font-size:0.8em;
+    }
+} 

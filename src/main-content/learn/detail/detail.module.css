@@ -69,7 +69,7 @@
 .goUp{
     position: fixed;
     right: 1em;
-    top: 5em;
+    bottom: 4em;
 }
 
 .goUp .upArrow{

@@ -11,7 +11,8 @@ export default class HeadPractice extends Component{
     render(){
         return (
             <div className={styles.practiceHead}>
-                <p className={styles.titleBox}>{this.props.title && this.props.title.replace('.json',' ')}</p>
+                {/* <p className={styles.titleBox}>{this.props.title && this.props.title.replace('.json',' ')}</p> */}
+                <h3 className={styles.titleBox}>{this.props.title && this.props.title.replace('.json',' ')}</h3>
                 <ProgressBar className={styles.progessBox} total={this.props.total} value={this.props.value} />
             </div>
         )

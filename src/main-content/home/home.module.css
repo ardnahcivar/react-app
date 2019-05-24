@@ -1,4 +1,10 @@
-.fiftyWH{
+.fiftyWHL{
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+}
+
+.fiftyWHR{
     width: 50%;
     height: 100%;
     display: inline-block;
@@ -13,7 +19,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70%;
     align-content: center;
 }
 
@@ -42,3 +47,36 @@
     box-shadow: 0 0 0 3px rgba(121,82,179,.25);
 }
 
+@media screen and (min-width: 768px) {
+    .actionsContainer{
+        height: 70%;
+    }
+    
+    .fiftyWHR{
+        height: 90vh;
+    }
+
+    .actionsBtn{
+        width: 60%;
+        margin: 2em 0;
+    }
+}
+
+@media screen and (max-width: 480px) and (orientation:portrait) {
+    .fiftyWHL{
+        display: none;
+    }
+    .fiftyWHR{
+        width: 100%;
+        margin: 2em 0
+    }
+
+    .actionsContainer{
+        height: auto;
+    }
+
+    .actionsBtn{
+        width: 80%;
+        margin: 1em 0;
+    }
+} 

@@ -14,7 +14,7 @@ export default class Home extends Component {
         super(props);
         this.state = {
             names:[],
-            filternames: []
+            originalNames: []
         }
         this.Search = this.Search.bind(this);
         this.onClickHandler = this.onClickHandler.bind(this);
@@ -29,7 +29,8 @@ export default class Home extends Component {
         .then(data => {
             console.log(data);
             this.setState({
-                names:data
+                names:data,
+                originalNames:data
             });
         });
         this.showSpinner = false;
@@ -40,10 +41,10 @@ export default class Home extends Component {
         return (
             <Aux>
                 <form id={styles.wordList}> 
-                    <label for="wordname">Name</label>
-                    <input id="wordname" type="text" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
+                    <label htmlFor="wordname">Name</label>
+                    <input id="wordname" type="text" autoComplete="off" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
                     <button className="word-create" onClick={(e) => this.create(e)}>CREATE</button>
-                    <input id={styles.searchWord} type="text" placeholder="Search"/>
+                    <input id={styles.searchWord}  onChange={(e) => this.Search(e) } type="text" autoComplete="off" placeholder="Search"/>
                 </form>
                 {spinner}
                 <Aux>
@@ -52,7 +53,7 @@ export default class Home extends Component {
             </Aux>
         )
 
-    }
+    }       
         
 
     createInputChange = (event) => {
@@ -61,9 +62,17 @@ export default class Home extends Component {
 
     Search = (event) => {
         const value = event.target.value.toLowerCase();
-        this.setState({
-            filternames:this.state.names.filter(name => name.toLowerCase().includes(value))
-        })
+        if(value.length){
+            this.setState({
+                ...this.state,
+                names:this.state.names.filter(word => word.name.toLowerCase().includes(value))
+            })
+        }else{
+            this.setState({
+                ...this.state,
+                names:this.state.originalNames
+            })
+        }
         console.log(this.state.filternames);
         event.preventDefault();
     }

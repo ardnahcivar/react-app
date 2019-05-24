@@ -16,8 +16,8 @@ export default class Home extends Component{
     render(){
         return (
             <Aux>
-                <div className={`description ${styles.fiftyWH}`}></div>
-                <div className={`actions ${styles.fiftyWH} ${styles.floatRight}`}>
+                <div className={`description ${styles.fiftyWHL}`}></div>
+                <div className={`actions ${styles.fiftyWHR} ${styles.floatRight}`}>
                     <div className={styles.actionsContainer}>
                         <button tabIndex="1" className={styles.actionsBtn} onClick={this.learn}>LEARN</button>
                         <button tabIndex="2" className={styles.actionsBtn} onClick={this.practice}>PRACTICE</button>

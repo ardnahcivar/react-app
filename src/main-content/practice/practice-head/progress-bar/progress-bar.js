@@ -1,6 +1,6 @@
 import React,{Component}from 'react';
 import styles from  './progress-bar.module.css';
-
+import Aux from './../../../../hoc/auxy';
 
 export default class ProgressBar extends Component{
 
@@ -34,15 +34,18 @@ export default class ProgressBar extends Component{
 
     render(){
         const prog = (this.state.value - this.state.initial) / this.state.total * 100;
-        const p = prog / 100 * 400;
+        let vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const p = prog / 100 * Math.floor(vw / 2) ;
         const width = {width:p || 0};
         return (
+            <Aux>
                 <div className={styles.progressContainer}> 
                     <div className={styles.progress} style={width}></div>
-                    <span className={styles.progressCount}>
-                        {this.state.value - this.state.initial} / {this.state.total}
-                    </span>
                 </div>
+                <span className={styles.progressCount}>
+                    {this.state.value - this.state.initial} / {this.state.total}
+                </span>
+            </Aux>
             
         )
     }
