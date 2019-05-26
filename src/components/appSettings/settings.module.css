@@ -1,0 +1,28 @@
+
+.modalHeader{
+    width: 100%;
+}
+
+.modalTitle,.modalClose{
+    display: inline-block;
+}
+
+.modalTitle{
+    width:90%;
+}
+
+.modalClose{
+    width: 10%;
+}
+
+.modalClose > svg{
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  
+}
+
+@media screen and (max-width: 480px) and (orientation:portrait) {
+  
+} 

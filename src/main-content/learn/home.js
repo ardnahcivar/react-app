@@ -43,7 +43,7 @@ export default class Home extends Component {
         const spinner = this.showSpinner ? <div className={styles.spinner}><Spinner /> </div> : null;
         return (
             <Aux>
-                <form id={styles.wordList}>
+                <div id={styles.wordList}>
                     <div className={[styles.fieldSet,styles.first].join(' ')}>
                         {/* <label htmlFor="wordname">Name</label> */}
                         <input id="wordname" type="text" value={this.state.createInputText} autoComplete="off" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
@@ -58,14 +58,14 @@ export default class Home extends Component {
                             <SearchIcon />
                         </div>
                     </div>
-                </form>
-                {spinner}
-                <Aux>
-                    { this.state.names.length  ?
-                        <WordList names={this.state.names} click={this.onClickHandler}/>
-                        : (this.showSpinner ? null:<p className={styles.center}>Not Found</p>)
-                    }
-                </Aux>
+                    {spinner}
+                    <Aux>
+                        { this.state.names.length  ?
+                            <WordList names={this.state.names} click={this.onClickHandler}/>
+                            : (this.showSpinner ? null:<p className={styles.center}>Not Found</p>)
+                        }
+                    </Aux>
+                </div>
             </Aux>
         )
 
@@ -109,7 +109,11 @@ export default class Home extends Component {
         if(this.state.createInputText.trim().length){
             const newState = this.state.names.concat({name:this.state.createInputText});
             if(newState.length){
-                this.setState({names:newState});
+                this.setState({
+                    ...this.state,
+                    names:newState,
+                    createInputText:''
+                });
             }
         }else{
             alert('failed to create');

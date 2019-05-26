@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     width: 85%;
     margin: 0 auto;
+    order: 3;
 }
 
 .word{
