@@ -4,6 +4,8 @@ import {MARKETPLACE_URL} from '../../assets/urls';
 import Aux from  './../../hoc/auxy';
 import styles from './home.module.css';
 import Spinner from './../../components/spinner/spinner';
+import CancelIcon from  'react-icons/lib/md/cancel';
+import SearchIcon from 'react-icons/lib/md/search';
 
 export default class Home extends Component {
 
@@ -14,7 +16,8 @@ export default class Home extends Component {
         super(props);
         this.state = {
             names:[],
-            originalNames: []
+            originalNames: [],
+            createInputText: ''
         }
         this.Search = this.Search.bind(this);
         this.onClickHandler = this.onClickHandler.bind(this);
@@ -40,15 +43,28 @@ export default class Home extends Component {
         const spinner = this.showSpinner ? <div className={styles.spinner}><Spinner /> </div> : null;
         return (
             <Aux>
-                <form id={styles.wordList}> 
-                    <label htmlFor="wordname">Name</label>
-                    <input id="wordname" type="text" autoComplete="off" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
-                    <button className="word-create" onClick={(e) => this.create(e)}>CREATE</button>
-                    <input id={styles.searchWord}  onChange={(e) => this.Search(e) } type="text" autoComplete="off" placeholder="Search"/>
+                <form id={styles.wordList}>
+                    <div className={[styles.fieldSet,styles.first].join(' ')}>
+                        {/* <label htmlFor="wordname">Name</label> */}
+                        <input id="wordname" type="text" value={this.state.createInputText} autoComplete="off" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
+                        <div className={styles.clearInputIcon} onClick={this.clearInputText}>
+                            <CancelIcon />
+                        </div>
+                    </div>
+                    <button  onClick={(e) => this.create(e)}>CREATE</button>
+                    <div className={[styles.fieldSet,styles.floatRight].join(' ')}>
+                        <input id={styles.searchWord}  onChange={(e) => this.Search(e) } type="text" autoComplete="off" placeholder="Search"/>
+                        <div className={styles.searchIcon}>
+                            <SearchIcon />
+                        </div>
+                    </div>
                 </form>
                 {spinner}
                 <Aux>
-                    <WordList names={this.state.names} click={this.onClickHandler}/>
+                    { this.state.names.length  ?
+                        <WordList names={this.state.names} click={this.onClickHandler}/>
+                        : (this.showSpinner ? null:<p className={styles.center}>Not Found</p>)
+                    }
                 </Aux>
             </Aux>
         )
@@ -57,7 +73,19 @@ export default class Home extends Component {
         
 
     createInputChange = (event) => {
-        this.createInputText = event.target.value;
+        // this.screateInputText = event.target.value;
+        this.setState({
+            ...this.state,
+            createInputText:event.target.value
+        })
+    }
+
+    clearInputText = () => {
+        // this.createInputText = '';
+        this.setState({
+            ...this.state,
+            createInputText:''
+        })
     }
 
     Search = (event) => {
@@ -78,8 +106,8 @@ export default class Home extends Component {
     }
 
     create = (event) => {
-        if(this.createInputText.trim().length){
-            const newState = this.state.names.concat({name:this.createInputText});
+        if(this.state.createInputText.trim().length){
+            const newState = this.state.names.concat({name:this.state.createInputText});
             if(newState.length){
                 this.setState({names:newState});
             }

@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import styles from './header.module.css';
+import SettingsIcon  from 'react-icons/lib/md/settings';
 
 class Header extends Component{
     constructor(props){
@@ -11,6 +12,10 @@ class Header extends Component{
         return (
             <header>
                 <a href="/ ">Home</a>
+        
+                <div className={styles.settingsIcon}>
+                    <SettingsIcon />
+                </div>
             </header>
         )
     }

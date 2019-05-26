@@ -1,28 +1,18 @@
-#wordList{
-    margin: 1em;
-}
 
-#wordList input{
-    height:2rem;
-    margin: 1em;
-    width: 20em;
-}
 
 #wordList button{
-    height: 2rem;
+    height: 3em;
     color: #fff;
     background-color: #007bff;
     border: 1px solid #007bff;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 #wordList .word-create{
     letter-spacing: 1px;
 }
 
-#wordList #searchWord{
-    float: right;
-}
 .spinner{
     height: 10vh;
     width: 10vh;
@@ -31,3 +21,116 @@
     top:35%;
     font-size: 2px;
 }
+
+.clearInputIcon svg{
+    color: #f44336;
+    cursor: pointer;
+}
+
+.searchIcon svg{
+    color: gray;
+}
+
+.floatRight{
+    float: right;
+}
+
+.center{
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    #wordList{
+        margin: 1em;
+    }
+    
+    #wordList input{
+        height:3em;
+        margin: 1em;
+        width: 20em;
+        padding-right:2em;
+    }
+/* 
+    #wordList #searchWord{
+        float: right;
+    }   */
+    #wordList .fieldSet{
+        display: inline-block;
+        border: none;
+    }
+
+    .clearInputIcon,.searchIcon{
+        display: inline-block;
+        position: relative;
+        right: 40px;
+    }
+    .clearInputIcon svg,.searchIcon{
+        font-size: 1.25em;
+    }
+  
+}
+
+@media screen and (max-width: 480px) and (orientation:portrait) {
+    #wordList{
+        display: flex;
+        flex-direction: column;  
+        align-items: center;      
+    }
+    
+    #wordList .fieldSet {
+        border: none;
+        padding: 0;
+        width: 100%;
+        position: relative;
+    }
+
+    #wordList .fieldSet.first{
+        order:1;
+    }
+
+    #wordList button{
+        order: 2;
+        width: 90%;
+    }
+
+    #wordList #searchWord{
+        order: 0;
+        margin: 0;
+        width: 100%;
+    }
+    #wordList input{
+        height:3em;
+        /* margin: 1em; */
+        width: 100%;
+        border: 1px solid #eaeaea;
+        background: white;
+        padding-right: 2em;
+        box-sizing: border-box;
+    }
+    
+    #wordList div{
+        margin-bottom: 0.5em;
+    }
+
+    .clearInputIcon{
+        display: inline-block;
+    }
+    .searchIcon,.clearInputIcon{
+        display: inline-block;
+        padding: 0 0.5em;
+        position: absolute;
+        right: 0px;
+    }
+    .searchIcon{
+        top: 6px;
+    }
+    .clearInputIcon{
+        top :5px;
+    }
+
+    .floatRight{
+        position: sticky !important;
+        top: 45px;
+    }
+} 
+
