@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import styles from  './practice-word.module.css';
 import MdSpeakerIcon from 'react-icons/lib/md/volume-up';
 import Spinner from './../../../components/spinner/spinner';
-
+import dictateService from './../../../services/dictateMode';
+import constants from './../../../assets/constants';
 export default class PracticeWord extends Component{
     
 
@@ -64,8 +65,24 @@ export default class PracticeWord extends Component{
     }
 
     readOut = (word = this.props.word.name) => {
+        let mode = parseInt(dictateService.getDicatateMode());
+        console.log(this.props.word.information.split('\n\n'))
+        let sentence;
+        switch(mode){
+            case constants.DICTATEMODE.WORD_ONLY:
+                sentence = word;
+                break;
+            case constants.DICTATEMODE.WORD_DEF:
+                sentence = `${this.props.word.name} whose type is ${this.props.word.type} and ${this.props.word.information.split('\n\n')[0]}`
+                break;
+            case constants.DICTATEMODE.WORD_COMP:
+                sentence = `${this.props.word.name} whose type is ${this.props.word.type} ands ${this.props.word.information}`
+                break;
+            default:
+                sentence = word;
+        }
         const sp = new SpeechSynthesisUtterance();
-        sp.text = word;
+        sp.text = sentence;
         sp.volume = 1;
         sp.rate = 1;
         sp.pitch = 1;

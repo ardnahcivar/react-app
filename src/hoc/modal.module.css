@@ -8,7 +8,9 @@
     bottom: 0;
     z-index: 1000;
 }
-
+.modal{
+    border-radius: 10px;
+}
 
 .modalHeader{
     width: 100%;
@@ -31,9 +33,6 @@
     cursor: pointer;
 }
 
-
-
-
 .modalFooter button{
     float: right;
 }
@@ -44,7 +43,6 @@
         width: 30%;
         height: 50%;
         margin: 10% auto;
-        border-radius: 10px;
     }
 
     .modalTitle{
