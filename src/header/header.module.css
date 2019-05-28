@@ -27,6 +27,19 @@ header a {
     cursor: pointer;
 }
 
+.dictateBody {
+    /* border:1px solid salmon; */
+}
+
+.checkBox{
+    display: block;
+    font-weight: 100;
+}
+
+.checkBox input{
+    margin: 0 1em;
+}
+
 @media screen and (min-width: 768px) {
    header{
        height: 60px;

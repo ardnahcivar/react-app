@@ -34,13 +34,13 @@ class Header extends Component{
     render(){
         let checkList = this.state.dictateMode.map(k => {
             return(
-                <label>
+                <label className={styles.checkBox}>
                     <input type="checkbox" value={k.value} checked={k.checked} onChange={(e) => this.checkBoxonChange(e)}/>
                     {k.name}
                 </label>    
                 ) 
         })
-        let modalBody =  <div>
+        let modalBody =  <div className={styles.dictateBody}>
             <p>Select the Dictate Mode</p>
             {checkList}
         </div>

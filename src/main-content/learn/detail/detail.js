@@ -128,7 +128,7 @@ export default class Detail extends Component{
 
     scrollIntoWord = () => {
         const element = document.querySelector(`#${localStorage.getItem('bookMarker')}`);
-        if(element) element.scrollIntoView();
+        if(element) element.scrollIntoView({behavior:"smooth"});
     }
 
     showNext = () => {

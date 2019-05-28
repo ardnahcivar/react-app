@@ -24,7 +24,7 @@ const modal = (WrappedComponent) => {
                                 {this.props.body}
                             </div>
                             <div className={styles.modalFooter}>
-                                <button onClick={this.props.toggleModal}>Close</button>
+                                <p className={styles.modalClosed} onClick={this.props.toggleModal}>Close</p>
                             </div>
                         </div>
                     </div>
