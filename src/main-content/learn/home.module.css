@@ -43,14 +43,19 @@
     #wordList{
         margin: 1em;
     }
-    
+
+    #wordList button{
+        width:15em;
+    }
+
     #wordList input{
         height:3em;
         margin: 1em;
         width: 20em;
         padding-right:2em;
+        box-sizing: border-box;
     }
-/* 
+/*
     #wordList #searchWord{
         float: right;
     }   */
@@ -67,16 +72,16 @@
     .clearInputIcon svg,.searchIcon{
         font-size: 1.25em;
     }
-  
+
 }
 
 @media screen and (max-width: 480px) and (orientation:portrait) {
     #wordList{
         display: flex;
-        flex-direction: column;  
+        flex-direction: column;
         align-items: center;
     }
-    
+
     #wordList .fieldSet {
         border: none;
         padding: 0;
@@ -107,7 +112,7 @@
         padding-right: 2em;
         box-sizing: border-box;
     }
-    
+
     #wordList div{
         margin-bottom: 0.5em;
     }
@@ -132,5 +137,5 @@
         position: sticky !important;
         top: 45px;
     }
-} 
+}
 
