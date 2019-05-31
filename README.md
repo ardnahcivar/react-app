@@ -1,4 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Deployed URL
+see  the application at https://react-word-2aaf5.firebaseapp.com , project is in Progress
 
 ## Available Scripts
 
