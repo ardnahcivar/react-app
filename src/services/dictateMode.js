@@ -1,7 +1,7 @@
 
 class DicatateMode {
     static dictataKey = 'dictateKey';
-    
+
     constructor(){
         let defaultMode = localStorage.getItem(DicatateMode.dictataKey);
         if(defaultMode && defaultMode.trim.length >= 0){
@@ -18,7 +18,7 @@ class DicatateMode {
 
     static setDictateMode(val){
         localStorage.setItem(DicatateMode.dictataKey,val);
-    } 
+    }
  }
 
  export default DicatateMode;
