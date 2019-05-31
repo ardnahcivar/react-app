@@ -8,21 +8,18 @@ export default class Offline extends React.Component{
         isOnLine:null,
         transition: false
     }
-    transition = false;
+    
     constructor(props){
         super(props);
     }
 
     componentDidMount(){
-        console.log('MO')
         this.updateOnlineStatus();
         window.addEventListener('online',this.updateOnlineStatus);
         window.addEventListener('offline',this.updateOnlineStatus);
-        console.log(this.state);
     }
 
     componentDidUpdate(prevProps,prevState){
-        console.log('rec',prevState);
         if(!prevState.isOnLine && this.state.isOnLine){
             this.triggerTransition();
         }
@@ -51,10 +48,12 @@ export default class Offline extends React.Component{
         if(classes[0] === null && classes[1] === null){
             classes.push(styles.none);
         }
-        const toolBar = <p id={styles.onLineStatus} className={classes.join(' ') }>You are {this.state.onlineState} </p>;
+        const toolBar = <p >{this.state.onlineState} </p>;
         return(
             <Aux>
-                { toolBar }
+                <div id={styles.onLineStatus} className={classes.join(' ') }>
+                    { toolBar }
+                </div>
             </Aux>
         )
     }
@@ -62,7 +61,7 @@ export default class Offline extends React.Component{
     updateOnlineStatus = () => {
         this.setState({
             ...this.state,
-            onlineState : navigator.onLine ? "Live":"Currently Offline",
+            onlineState : navigator.onLine ? "You are online":"No connection working offline",
             isOnLine : navigator.onLine ? true : false
         },() => {
             console.log(this.state);
