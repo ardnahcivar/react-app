@@ -7,12 +7,12 @@ import MdArrowUpward from 'react-icons/lib/md/arrow-upward';
 import MdBookmarkFill from 'react-icons/lib/md/bookmark';
 
 export default class Detail extends Component{
-    
+
     selectedId = null;
     selectedDetails = null;
-    words = []; 
+    words = [];
     state = {words:[],selectWord:null}
-    
+
     constructor(props){
         super(props);
         this.startIndex = 0;
@@ -40,12 +40,10 @@ export default class Detail extends Component{
     }
 
     render(){
-        // const list = this.state.words.slice(this.startIndex,this.endIndex);
         const spinner = this.showSpinner ? <div className={styles.spinner}><Spinner /> </div> : null;
         const list = this.state.words;
         let res = list.length > 0 ? (
             list.map((word) => {
-            //  <Word  key={word.name + word.type} name={word.name} type={word.type} click={() => this.clickHandler(word)}/>
             this.bookmarkerFlag = (word.name + word.type) === this.bookmarker;
              return (
                 <div id={word.name + word.type} key={word.name + word.type } onClick={this.bookMarkIt} className={styles.wordBlock}>
@@ -61,16 +59,15 @@ export default class Detail extends Component{
                             <MdBookmark />
                         </span>
                         }
-                        
-                    </div>
+                    </div>   
                     <div className={styles.wordinfoContainer}>
                         <p className={styles.wordType}>{word.type}</p>
                         <p className={styles.wordInfon}>{word.information}</p>
                         <p className={styles.wordInfon}>{word.mnemonic}</p>
-                    </div>
+                    </div>     
                 </div>)
-            }) 
-        ):null; 
+            })
+        ):null;
         return (
             <Aux>
                 {spinner}
@@ -79,35 +76,17 @@ export default class Detail extends Component{
                         <MdArrowUpward />
                     </div>
                 </div>
-                <div className="container-title"> 
-                    <h1>{this.selectedDetails && this.selectedDetails.name.replace('.json','')}</h1>
+                {!this.showSpinner ? 
+                <div className={styles.containerTitle}>
+                    <h3>{this.selectedDetails && this.selectedDetails.name.replace('.json','')}</h3>
                 </div>
+                : null}
                 <div className={styles.wordContainer}>
                     <div className={styles.wordGrid}>
-                        {res}
+                            {res}
                     </div>
-                    {/* <aside>
-                        <Side  {...this.state.selectWord}/>
-                    </aside> */}
-
-                    {/* <div className={styles.wordGrid}>
-                            <div className="word-block">
-                                    <div className="word-name">
-                                    <p>zenith</p>
-                                    </div>
-                                    <div className="word-info-container">
-                                        <p className="word-type">noun</p>
-                                        <p className="word-infon">
-                                        Definition: High point, culmination Usage: At the zenith of her career, the actress could command $5 million per film. Now, she is mostly seen in made-for-TV movies. Related Words: Acme, Summit, Pinnacle (synonyms), Apex (vertix, tip, point), Apogee (high point, point at which the moon is furthest from the Earth) More Info: The opposite of the zenith is the nadir, or lowest point. Both words are terms from astronomy, referring to points directly above and below the observer on an imaginary sphere on which celestial bodies appear to be projected. On the GRE, these words will be used metaphorically —the nadir of one’s struggles, the zenith of one’s success.
-                                        </p>
-                                    </div>
-                            </div>
-                    </div> */}
-
-
                 </div>
             </Aux>
-            
         )
     }
 

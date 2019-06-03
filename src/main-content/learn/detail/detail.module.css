@@ -1,3 +1,15 @@
+.containerTitle{
+    display: flex;
+    align-items: center;
+    border: 1px solid #eaeaea;
+    position: sticky;
+    background: white;
+    z-index: 999;
+}
+
+.containerTitle h3{
+    padding-left:1em;
+}
 
 .wordContainer{
     display: flex;
@@ -5,7 +17,7 @@
 }
 
 .wordGrid{
-    width: 90%;
+    width: 95%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -19,12 +31,7 @@
     width: 100%;
 }
 
-.wordNameContainer{
-    width: 30%;
-    display: inline-block;
-}
 .wordName{
-    font-size:5em;
     margin-bottom: 0;
     word-break: break-word; 
 }
@@ -33,18 +40,13 @@
     font-size: 1.2em;
 }
 
-.wordinfoContainer{
-    width: 70%;
-    display: inline-block;
-    float: right;
-}
-
 .wordType{
     font-size: 1.5em;
 }
 
 .wordInfon{
     font-size: 1em;
+    word-break:break-word;
 }
 
 .bookMark{
@@ -77,6 +79,7 @@
     height: 50px;
     border-radius: 50%;
     border: 1px solid gray;
+    background:white;
 }
 
 .upArrow svg{
@@ -90,3 +93,46 @@
     margin: 0 auto;
     font-size: 2px;
 }
+
+@media screen and (min-width: 768px) {
+    .containerTitle{
+        top: 60px;
+    }
+    .containerTitle h3{
+        font-size:1em;
+    }
+
+    .wordNameContainer{
+        display: inline-block;
+        width: 30%;
+    }
+
+    .wordinfoContainer{
+        width: 70%;
+        display: inline-block;
+        float: right;  
+    }
+    .wordName{
+        font-size:5em;
+    }
+
+}
+
+@media screen and (max-width: 480px) and (orientation:portrait) {
+    .containerTitle{
+        top: 45px;
+    }
+    .containerTitle h3{
+        font-size:0.8em;
+    }
+    .wordNameContainer,.wordinfoContainer{
+        display:block;
+        width:100%;
+    }
+    .wordNameContainer p{
+        margin:0;
+    }
+    .wordName{
+        font-size:3em;
+    }
+} 
