@@ -26,6 +26,7 @@ export default class PracticeContainer extends Component {
                 selected:selectedObj,
                 wordIndex:Math.floor (Math.random() * data.length)
             });
+            this.nextWord();
         })
         this.showSpinner = false;
     }

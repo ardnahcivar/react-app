@@ -45,7 +45,6 @@ export default class Home extends Component {
             <Aux>
                 <div id={styles.wordList}>
                     <div className={[styles.fieldSet,styles.first].join(' ')}>
-                        {/* <label htmlFor="wordname">Name</label> */}
                         <input id="wordname" type="text" value={this.state.createInputText} autoComplete="off" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
                         <div className={styles.clearInputIcon} onClick={this.clearInputText}>
                             <CancelIcon />
@@ -62,7 +61,7 @@ export default class Home extends Component {
                     <Aux>
                         { this.state.names.length  ?
                             <WordList names={this.state.names} click={this.onClickHandler}/>
-                            : (this.showSpinner ? null:<p className={styles.center}>Not Found</p>)
+                            : (this.showSpinner ? null:<p className={styles.searchNotFound}>Not Found</p>)
                         }
                     </Aux>
                 </div>

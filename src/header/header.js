@@ -5,7 +5,7 @@ import styles from './header.module.css';
 import SettingsIcon  from 'react-icons/lib/md/settings';
 import constants  from './../assets/constants';
 import dictateService from './../services/dictateMode';
-
+import { Link } from 'react-router-dom';
 
 class Header extends Component{
     constructor(props){
@@ -47,7 +47,7 @@ class Header extends Component{
         return (
             <Aux>
                 <header>
-                    <a href="/ ">Home</a>
+                    <Link to="/">Home</Link>
                     <div className={styles.settingsIcon}>
                         <SettingsIcon  onClick={this.toggleModal}/>
                     </div>
