@@ -79,11 +79,8 @@
     height: 50px;
     border-radius: 50%;
     border: 1px solid gray;
-<<<<<<< Updated upstream
     background:white;
-=======
     z-index: 999;
->>>>>>> Stashed changes
 }
 
 .upArrow svg{
