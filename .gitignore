@@ -24,3 +24,4 @@ yarn-error.log*
 
 #assets URLS
 /src/assets/urls.js 
+/src/assets/firebase.js 

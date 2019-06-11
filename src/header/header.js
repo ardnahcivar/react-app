@@ -6,6 +6,7 @@ import SettingsIcon  from 'react-icons/lib/md/settings';
 import constants  from './../assets/constants';
 import dictateService from './../services/dictateMode';
 import { Link } from 'react-router-dom';
+import  Logo from './../assets/logo.svg';
 
 class Header extends Component{
     constructor(props){
@@ -47,11 +48,14 @@ class Header extends Component{
         return (
             <Aux>
                 <header>
+                    <Link to="/">
+                        <img  className={styles.logo} src={Logo} title="Wordlist Application"/>
+                    </Link>
                     <Link to="/">Home</Link>
+                    <Link to="#">About</Link>
                     <div className={styles.settingsIcon}>
                         <SettingsIcon  onClick={this.toggleModal}/>
                     </div>
-                    
                 </header>
                 {this.state.modalOpen ? <Settings 
                 open={this.state.modalOpen} 
