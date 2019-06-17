@@ -7,29 +7,36 @@ import Aux from './hoc/auxy';
 import Offline from './components/offline/offline';
 import AuthenticationContext from './context/auth-context';
 import firebase from './assets/firebase';
+import firebaseQueries from './services/firebase';
 
-class App extends Component {
-
-  constructor(props){
-    super(props)
-  }
+export default class App extends Component {
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged(user => {
       if(user){
-          this.setState({
-            firebase:firebase,
-            authenticated:true,
-            user:user,
-            setAuthState:this.authStateTogle
+          firebaseQueries.userExists(user)
+          .then(querySnapshot => {
+            if(querySnapshot.docs.length > 0){
+              // console.log(querySnapshot.docs[0].data())
+              this.setAuthState(querySnapshot.docs[0].data(),true)
+            }else{
+              firebaseQueries.createUser(user)
+              .then(querySnapshot =>  {
+                this.setAuthState({
+                  email:user.email,
+                  name:user.displayName
+                },true);
+              })
+              .catch(err => {
+                console.error('failed in creating user in db'+err)
+              })
+            }  
+          })
+          .catch(err => {
+            console.error('failed in checking user exists in db'+err)
           })
       }else{
-          this.setState({
-            firebase:firebase,
-            authenticated:false,
-            user:null,
-            setAuthState:this.authStateTogle
-          })
+        this.setAuthState(null,false);
       }
     }) 
   }
@@ -54,6 +61,13 @@ class App extends Component {
       </AuthenticationContext.Provider>
     );
   }
-}
 
-export default App;
+  setAuthState = (user,authenticated) => {
+    this.setState({
+      firebase:firebase,
+      authenticated:authenticated,
+      user:user,
+      setAuthState:this.authStateTogle
+    })
+  }
+}

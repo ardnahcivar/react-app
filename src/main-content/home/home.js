@@ -3,8 +3,7 @@ import Aux from './../../hoc/auxy';
 import styles from  './home.module.css';
 import * as firebase from 'firebase/app';
 import AuthenticationContext from './../../context/auth-context';
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
+import firebaseService from './../../services/firebase';
 
 
 export default class Home extends Component{
@@ -22,6 +21,8 @@ export default class Home extends Component{
             <AuthenticationContext.Consumer>
                 {
                     (context) => {
+                        console.log('context is');
+                        console.log(context);
                         return (
                             <Aux>
                                 <div className={`description ${styles.fiftyWHL}`}>
@@ -54,20 +55,10 @@ export default class Home extends Component{
     }
 
     login = (context) => {
-        context.firebase.auth().signInWithPopup(provider).then(function(result){
-            console.log(result);
-            context.setAuthState(true);  
-        })
-        .catch(function(error){
-            console.error(error);
-        })
+        firebaseService.userLogin(context)
     }
 
     logout = (context) => {
-        context.firebase.auth().signOut().then((v) => {
-            context.setAuthState(false);
-        }).catch((error) => {
-            console.log('log out failed'+error);
-        })
+        firebaseService.userLogout(context);
     }
 }

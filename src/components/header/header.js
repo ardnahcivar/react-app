@@ -6,8 +6,11 @@ import SettingsIcon  from 'react-icons/lib/md/settings';
 import constants  from './../../assets/constants';
 import dictateService from './../../services/dictateMode';
 import { Link } from 'react-router-dom';
+import AuthenticationContext from './../../context/auth-context';
+
 
 class Header extends Component{
+    // static authContext = AuthenticationContext;
     constructor(props){
         super(props);
         this.dictateMode = [
@@ -28,7 +31,7 @@ class Header extends Component{
 
 
     componentDidMount(){
-        
+       
     }
     
     render(){
@@ -48,10 +51,26 @@ class Header extends Component{
             <Aux>
                 <header>
                     <Link to="/">Home</Link>
+                    <AuthenticationContext.Consumer>
+                        {
+                            (context) => {
+                                return(
+                                    <Aux>
+                                    <div>Hey {context && context.user && context.user.name}</div>
+                                    {
+                                        context && context.authenticated ?
+                                        <div className={styles.logout}>Logout</div>
+                                        :
+                                        <div className={styles.login}>Login</div>
+                                    }
+                                    </Aux>
+                                )
+                            }
+                        }
+                    </AuthenticationContext.Consumer>
                     <div className={styles.settingsIcon}>
                         <SettingsIcon  onClick={this.toggleModal}/>
                     </div>
-                    
                 </header>
                 {this.state.modalOpen ? <Settings 
                 open={this.state.modalOpen} 
