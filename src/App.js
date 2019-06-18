@@ -30,7 +30,7 @@ export default class App extends Component {
               .catch(err => {
                 console.error('failed in creating user in db'+err)
               })
-            }  
+            }
           })
           .catch(err => {
             console.error('failed in checking user exists in db'+err)
@@ -38,7 +38,11 @@ export default class App extends Component {
       }else{
         this.setAuthState(null,false);
       }
-    }) 
+    })
+
+    // firebaseQueries.createWordList('wordlist','Essentials','aravichandraabcd')
+    // .then(res => console.log(`inserted the doc ${res}`) )
+    // .catch(error => console.error(`failed to create word list ${error}`))
   }
 
   authStateTogle = (state) => {

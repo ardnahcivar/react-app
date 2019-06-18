@@ -9,6 +9,7 @@
 
 .word{
     display: inline-block;
+    position: relative;
     height: 5em;
     margin: 1em;
     background-color: #f8f9fa;
@@ -24,6 +25,18 @@
     border: none;
 }
 
+.wordAdd{
+    position: absolute;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 1.5em;
+    color:#1B5E20;
+}
+
+.wordAdd:hover{
+    color: #00C853;;
+}
 
 
 @media screen and (min-width: 768px) {
@@ -36,5 +49,5 @@
     .word{
         width: 100%;
     }
-} 
+}
 

@@ -9,7 +9,7 @@ export default class Firebase{
     static userLogin(context){
         context.firebase.auth().signInWithPopup(provider).then(function(result){
             console.log(result);
-            context.setAuthState(true);  
+            context.setAuthState(true);
         })
         .catch(function(error){
             console.error(error);
@@ -26,13 +26,13 @@ export default class Firebase{
 
     static userExists(user){
         const userRef = db.collection('users');
-        return userRef.where('email','==',user.email).where('name','==',user.displayName).get();   
+        return userRef.where('email','==',user.email).where('name','==',user.displayName).get();
     }
 
     static createUser(user){
         return db.collection('users').add({
             email: user.email,
-            name:user.displayName   
+            name:user.displayName
         });
     }
 
@@ -40,5 +40,11 @@ export default class Firebase{
         return db.collection('users').where('id','==',id).get();
     }
 
+    static createWordList(collectionName,wordListName,createdBy){
+        return db.collection(collectionName).add({
+            list:wordListName,
+            createdBy: createdBy
+        })
+    }
 
 }
