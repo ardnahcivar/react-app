@@ -11,28 +11,6 @@ class Settings extends React.Component{
             open:this.props.open
         }
     }
-
-    componentDidMount(){
-
-    }
-
-    // render(){
-    //     return (
-    //         <Aux>
-    //             <div className={styles.modalHeader}>
-    //                 <div className={styles.modalTitle}>
-    //                     <p>Settings</p>   
-    //                 </div>
-    //                 <div className={styles.modalClose}>
-    //                     <CloseIcon onClick={this.props.toggleModal} />    
-    //                 </div>
-    //             </div>
-    //             <div className={styles.modalBody}>
-    //                 <p>Settings</p>
-    //             </div>
-    //         </Aux>
-    //     )
-    // }
 }
 
 const ModalHoc =  Modal(Settings);

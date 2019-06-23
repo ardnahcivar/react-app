@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import APP_CONSTANTS from "./../assets/constants";
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
 const db = firebase.firestore();
@@ -25,26 +26,30 @@ export default class Firebase{
     }
 
     static userExists(user){
-        const userRef = db.collection('users');
+        const userRef = db.collection(APP_CONSTANTS.COLLECTIONS.USERS);
         return userRef.where('email','==',user.email).where('name','==',user.displayName).get();
     }
 
     static createUser(user){
-        return db.collection('users').add({
+        return db.collection(APP_CONSTANTS.COLLECTIONS.USERS).add({
             email: user.email,
             name:user.displayName
         });
     }
 
     static findDocById(id){
-        return db.collection('users').where('id','==',id).get();
+        return db.collection(APP_CONSTANTS.COLLECTIONS.USERS).where('id','==',id).get();
     }
 
-    static createWordList(collectionName,wordListName,createdBy){
+    static createDoc(collectionName,data){
         return db.collection(collectionName).add({
-            list:wordListName,
-            createdBy: createdBy
+            ...data
         })
     }
+
+    static getDoc(collectionName,condition){
+        let queryRef = db.collection(collectionName).where(condition[0].key,'==',condition[0].value).where(condition[1].key,'==',condition[1].value);
+        return queryRef.get();
+    } 
 
 }

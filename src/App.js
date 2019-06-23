@@ -17,14 +17,15 @@ export default class App extends Component {
           firebaseQueries.userExists(user)
           .then(querySnapshot => {
             if(querySnapshot.docs.length > 0){
-              // console.log(querySnapshot.docs[0].data())
-              this.setAuthState(querySnapshot.docs[0].data(),true)
+              console.log(querySnapshot.docs[0].data())
+              this.setAuthState({id:querySnapshot.docs[0].id, ...querySnapshot.docs[0].data()},true)
             }else{
               firebaseQueries.createUser(user)
               .then(querySnapshot =>  {
                 this.setAuthState({
                   email:user.email,
-                  name:user.displayName
+                  name:user.displayName,
+                  id:querySnapshot.id
                 },true);
               })
               .catch(err => {
@@ -39,10 +40,6 @@ export default class App extends Component {
         this.setAuthState(null,false);
       }
     })
-
-    // firebaseQueries.createWordList('wordlist','Essentials','aravichandraabcd')
-    // .then(res => console.log(`inserted the doc ${res}`) )
-    // .catch(error => console.error(`failed to create word list ${error}`))
   }
 
   authStateTogle = (state) => {

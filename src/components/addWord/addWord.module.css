@@ -1,0 +1,76 @@
+.createWord{
+    width:400px;
+    padding:0 1em;
+    border:1px solid gray;
+    color:#000;
+  }
+  
+  
+  .head{
+    height:2em;
+    background:gray;
+    margin-left:-1em;
+    margin-right:-1em;
+  }
+
+  .headTitle{
+    color: white;
+    margin: 0;
+    text-align: center
+  }
+  
+  .inputContainer{
+    display: flex;
+    align-items: center;
+  }
+
+  .inputB input{
+    height:1.5em;
+    margin: 1em 1em 1em 0;
+  }
+
+  .inputB .name{
+    
+  }
+
+  .inputB .type{
+    
+  }
+  
+  .getDfBtn{
+    height: 2.5em;
+  }
+
+  .getDfBtn > button{
+    width: 5em !important;
+    background: green !important;
+    border:1px solid green !important;
+  }
+
+
+  .wordHead{
+  }
+  .wodname{
+    width: 8em;
+    display: inline-block;
+  }
+  .phonetic{
+    display: inline-block;
+    float: right;
+  }
+  .types{
+
+  }
+  .type{
+    border: 1px solid;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 0.25em;
+    margin: 0 0.5em;
+  }
+  .textInputB textarea{
+    width:100%;
+    box-sizing:border-box;
+    resize:vertical;
+  }
+  

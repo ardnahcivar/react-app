@@ -38,6 +38,13 @@
     color: #00C853;;
 }
 
+.addWordContainer{
+    position: fixed;
+    top: 28%;
+    left: 36%;
+    background: white;
+    z-index: 99;
+}
 
 @media screen and (min-width: 768px) {
    .word{
