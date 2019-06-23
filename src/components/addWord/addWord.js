@@ -1,6 +1,10 @@
 import React from 'react';
 import styles from './addWord.module.css';
 import {DEF_URL} from "./../../assets/urls";
+import APP_CONSTANTS from './../../assets/constants';
+import AddIcon from 'react-icons/lib/md/add-circle-outline';
+import firebaseQueries from './../../services/firebase';
+
 
 export default class AddWord extends React.Component{
 
@@ -37,6 +41,7 @@ export default class AddWord extends React.Component{
                     </div>
                     <div className={styles.getDfBtn}>
                       <button onClick={this.fetchDefin}>GET</button>
+                      <div className={styles.addWord} onClick={this.addWord}><AddIcon /></div>
                     </div>
                 </div>
 
@@ -107,5 +112,29 @@ export default class AddWord extends React.Component{
         finally{
           this.fetchProg = false;
         }
+    }
+
+    addWord = async() => {
+      //name type pron information aka defini mnenomic
+      let def = '';
+      Object.keys(this.state.def.meaning).map(key => {
+        this.state.def.meaning[key].map(val => {
+          def += val.definition;
+          if(val.example)
+            def += ' example:'+ val.example || '' + '\n';
+        })
+      })
+      try {
+        let wordAdd = await firebaseQueries.createDoc(APP_CONSTANTS.COLLECTIONS.WORDS,{
+          name:this.state.def.word,
+          type:Object.keys(this.state.def.meaning).join(','),
+          mnemonic:this.state.def.origin,
+          information:def,
+          pronunciation:this.state.def.phonetic,
+          id:this.props.sha
+        }) 
+      } catch (error) {
+        console.error(`failede to add the word ${error}`);
+      }
     }
   }

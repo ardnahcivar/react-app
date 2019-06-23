@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import Aux from './../../../hoc/auxy';
 import Spinner from './../../../components/spinner/spinner';
+import APP_CONSTANTS from './../../../assets/constants';
+import FirebaseQueries from './../../../services/firebase';
 import styles from './detail.module.css'
 import MdBookmark from 'react-icons/lib/md/bookmark-outline';
 import MdArrowUpward from 'react-icons/lib/md/arrow-upward';
@@ -27,16 +29,45 @@ export default class Detail extends Component{
         this.selectedId = this.props.match.params.id;
         const names = this.props.location.state.names;
         this.selectedDetails = names.filter(word => word.sha === this.selectedId)[0];
-        fetch(this.selectedDetails.download_url)
-        .then(resonse => resonse.json())
-        .then(data => {
-            this.words = data;
-            this.setState({words:data},()=>{
-                this.scrollIntoWord();
-                // inadvertent1557932034874'
-            });
-        })
+        try {
+            if(this.selectedDetails.download_url){
+                fetch(this.selectedDetails.download_url)
+                .then(resonse => resonse.json())
+                .then(data => {
+                    this.words = data;
+                    this.setState({words:data},()=>{
+                        this.scrollIntoWord();
+                        // inadvertent1557932034874'
+                    });
+                })
+            }else{
+                this.fetchUserSpecific();
+            }
+            
+        } catch (error) {
+            
+        }
         this.showSpinner = false;
+    }
+
+    
+    fetchUserSpecific = async() => {
+            let data = await FirebaseQueries.getDoc(APP_CONSTANTS.COLLECTIONS.WORDS,
+                [
+                    {key:'id',value:this.selectedDetails.sha},
+                    {key:'id',value:this.selectedDetails.sha}
+                ]
+            )
+            let d = [];
+            data.forEach(doc => {
+                d.push(doc.data());
+            })
+            this.words = d;
+            this.setState({
+                words:d
+            },()=>{
+                debugger
+            })
     }
 
     render(){

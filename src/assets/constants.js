@@ -7,7 +7,8 @@ const APP_CONSTANTS = {
 
     COLLECTIONS:{
         WORDLIST:'wordlist',
-        USERS:'users'
+        USERS:'users',
+        WORDS:'words'
     }
 }
 

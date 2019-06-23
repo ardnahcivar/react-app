@@ -47,7 +47,14 @@
     border:1px solid green !important;
   }
 
+  .addWord{
+    display: inline-block;
+    height: 3em;
+  }
 
+  .addWord svg{
+    font-size: 2em;
+  }
   .wordHead{
   }
   .wodname{

@@ -9,7 +9,8 @@ import Aux from "./../../../hoc/auxy";
         super(props);
         this.state = {
             open:false,
-            wordlist:null
+            wordlist:null,
+            sha:null
         }
     }
 
@@ -17,7 +18,8 @@ import Aux from "./../../../hoc/auxy";
         this.setState({
             ...this.state,
             open:true,
-            wordlist:word
+            wordlist:word.name.replace('.json',''),
+            sha:word.sha
         })
         event.stopPropagation();
     }
@@ -31,7 +33,7 @@ import Aux from "./../../../hoc/auxy";
                     return(
                             <div key={word.sha} className={styles.word} onClick={() => this.props.click(word,this.props.names)}>
                                 {word.name.replace('.json','')}
-                                    <span className={styles.wordAdd} onClick={(e)=>this.openAddWord(e,word.name.replace('.json',''))}><AddIcon /></span>
+                                    <span className={styles.wordAdd} onClick={(e)=>this.openAddWord(e,word)}><AddIcon /></span>
                             </div>
                         )
                     })
@@ -40,7 +42,7 @@ import Aux from "./../../../hoc/auxy";
             {
                 this.state.open ?
                 <div className={styles.addWordContainer}>
-                    <AddWord wordlist={this.state.wordlist}/>
+                    <AddWord wordlist={this.state.wordlist} sha={this.state.sha}/>
                 </div>
                 :
                 null
