@@ -65,8 +65,6 @@ export default class Detail extends Component{
             this.words = d;
             this.setState({
                 words:d
-            },()=>{
-                debugger
             })
     }
 

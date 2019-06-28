@@ -72,7 +72,8 @@ export default class Home extends Component {
         });
         this.setState({
             ...this.state,
-            names:this.state.names.concat(temp)
+            names:this.state.names.concat(temp),
+            originalNames:this.state.names.concat(temp)
         })
     }
 
@@ -135,6 +136,15 @@ export default class Home extends Component {
         this.props.history.push({pathname:this.props.match.url+'/'+word.sha,state:{names:list}});
     }
 
+
+    OnAuthCallFun = (e,context,func) => {
+        if(FirebaseQueries.userAuthenticated()){
+            func(e,context);
+        }else{
+            //show snackbar to tell user to Login
+        }
+    }
+
     render(){
         const spinner = this.showSpinner ? <div className={styles.spinner}><Spinner /> </div> : null;
         return (
@@ -150,7 +160,7 @@ export default class Home extends Component {
                             <CancelIcon />
                         </div>
                     </div>
-                    <button  onClick={(e) => this.create(e,context)}>CREATE</button>
+                    <button  onClick={(e) => this.OnAuthCallFun(e,context,this.create)}>CREATE</button>
                     <div className={[styles.fieldSet,styles.floatRight].join(' ')}>
                         <input id={styles.searchWord}  onChange={(e) => this.Search(e) } type="text" autoComplete="off" placeholder="Search"/>
                         <div className={styles.searchIcon}>

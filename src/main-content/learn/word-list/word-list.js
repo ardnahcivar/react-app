@@ -3,6 +3,7 @@ import styles from  './word-list.module.css';
 import AddIcon from 'react-icons/lib/md/add-circle-outline';
 import AddWord from './../../../components/addWord/addWord';
 import Aux from "./../../../hoc/auxy";
+import firebaseQueries from './../../../services/firebase';
 
  export default class WordList extends React.Component {
     constructor(props){
@@ -14,16 +15,38 @@ import Aux from "./../../../hoc/auxy";
         }
     }
 
+    componentDidMount(){
+        console.log(`auth state is ${firebaseQueries.userAuthenticated()}`);
+    }
+
     openAddWord = (event,word) =>  {
-        this.setState({
-            ...this.state,
-            open:true,
-            wordlist:word.name.replace('.json',''),
-            sha:word.sha
-        })
+        this.stateUpdateOnAuth({
+                open:true,
+                wordlist:word.name.replace('.json',''),
+                sha:word.sha 
+            });
         event.stopPropagation();
     }
     
+
+    toggleAddWord = () => {
+        this.stateUpdateOnAuth({
+            open:!this.state.open
+        })
+    }
+
+    stateUpdateOnAuth = (newState) => {
+        if(firebaseQueries.userAuthenticated()){
+            this.setState({
+                ...this.state,
+                ...newState
+            })
+        }else{
+            //show snackbar to tell user to Login
+            alert('not authenca')
+        }
+    }
+
    render (){
     return (
         <Aux>
@@ -42,7 +65,7 @@ import Aux from "./../../../hoc/auxy";
             {
                 this.state.open ?
                 <div className={styles.addWordContainer}>
-                    <AddWord wordlist={this.state.wordlist} sha={this.state.sha}/>
+                    <AddWord toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
                 </div>
                 :
                 null

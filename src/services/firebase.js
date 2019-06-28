@@ -25,6 +25,10 @@ export default class Firebase{
         })
     }
 
+    static userAuthenticated(){
+        return firebase.auth().currentUser ? true : false;
+    }
+
     static userExists(user){
         const userRef = db.collection(APP_CONSTANTS.COLLECTIONS.USERS);
         return userRef.where('email','==',user.email).where('name','==',user.displayName).get();

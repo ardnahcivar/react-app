@@ -4,7 +4,7 @@ import {DEF_URL} from "./../../assets/urls";
 import APP_CONSTANTS from './../../assets/constants';
 import AddIcon from 'react-icons/lib/md/add-circle-outline';
 import firebaseQueries from './../../services/firebase';
-
+import CloseIcon from  'react-icons/lib/md/close';
 
 export default class AddWord extends React.Component{
 
@@ -32,7 +32,11 @@ export default class AddWord extends React.Component{
         return(
             <div className={styles.createWord}>
                 <div className={styles.head}>
-                  <p className={styles.headTitle}>Add words in {this.props.wordlist}</p>
+                  <p className={styles.headTitle}>Add words in {this.props.wordlist}
+                    <span className={styles.closeIconContainer} onClick={(e) => this.props.toggleAdd()}>
+                      <CloseIcon />
+                    </span>
+                  </p>
                 </div>
                 <div className={styles.inputContainer}>
                     <div className={styles.inputB}>
@@ -69,7 +73,9 @@ export default class AddWord extends React.Component{
                       return this.state.def.meaning[k].map(w => {  
                         return (
                           <div>
-                            <p>{JSON.stringify(w)}</p>
+                            <p>{w.definition}</p>
+                            <p>{w.example}</p>
+                            <p>{w.synonyms}</p>
                           </div>
                         )
                       })
