@@ -8,6 +8,8 @@ import Offline from './components/offline/offline';
 import AuthenticationContext from './context/auth-context';
 import firebase from './assets/firebase';
 import firebaseQueries from './services/firebase';
+import {ToastProvider} from 'react-toast-notifications';
+
 
 export default class App extends Component {
 
@@ -51,6 +53,7 @@ export default class App extends Component {
 
   render() {
     return (
+      <ToastProvider placement='bottom-center'>
       <AuthenticationContext.Provider value={this.state}>
         <BrowserRouter>
           <Aux>
@@ -59,7 +62,9 @@ export default class App extends Component {
             <Main />
           </Aux>
         </BrowserRouter>
+        <div id="snackbar"></div>
       </AuthenticationContext.Provider>
+      </ToastProvider>
     );
   }
 

@@ -9,11 +9,13 @@ import SearchIcon from 'react-icons/lib/md/search';
 import AuthenticationContext from './../../context/auth-context';
 import FirebaseQueries from './../../services/firebase';
 import APP_CONSTANTS from "./../../assets/constants";
+ import {withToastManager} from 'react-toast-notifications';
 
-export default class Home extends Component {
+class Home extends Component {
 
     filterWordList = [];
     createInputText = '';
+
 
     constructor(props){
         super(props);
@@ -21,7 +23,7 @@ export default class Home extends Component {
             names:[],
             originalNames: [],
             createInputText: '',
-            user:null
+            user:null,
         }
         this.Search = this.Search.bind(this);
         this.onClickHandler = this.onClickHandler.bind(this);
@@ -101,6 +103,7 @@ export default class Home extends Component {
     }
 
    create = async(event, context) => {
+    const { toastManager } = this.props;
         if(this.state.createInputText.trim().length){
             try{
                 let wordAlreadyCreated = await FirebaseQueries.getDoc('wordlist',
@@ -115,18 +118,29 @@ export default class Home extends Component {
                                         name:this.state.createInputText,
                                         createdBy:context.user.id
                                     })
+                    let tempName = this.state.createInputText;
                     const newState = this.state.names.concat({name:this.state.createInputText});
                     if(newState.length){
                         this.setState({
                             ...this.state,
                             names:newState,
                             createInputText:''
+                        },()=>{
+                            toastManager.add(`Created Successfully ${tempName}`, { 
+                                appearance: 'success',
+                                autoDismiss: true,
+                                pauseOnHover: false}
+                            );
                         });
                     }
                 }
             }
             catch(error){
-                console.log(`failed to create a wordlist ${error}`)
+                console.log(`Failed to create  ${error}`)
+                toastManager.add('Failed to create', { 
+                    appearance: 'error',
+                    autoDismiss: true,
+                    pauseOnHover: false});
             }
         }
         event.preventDefault();
@@ -185,3 +199,4 @@ export default class Home extends Component {
 }
 
 Home.contextType = AuthenticationContext;
+export default withToastManager(Home)

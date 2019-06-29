@@ -5,8 +5,10 @@ import APP_CONSTANTS from './../../assets/constants';
 import AddIcon from 'react-icons/lib/md/add-circle-outline';
 import firebaseQueries from './../../services/firebase';
 import CloseIcon from  'react-icons/lib/md/close';
+import {withToastManager} from 'react-toast-notifications';
 
-export default class AddWord extends React.Component{
+
+class AddWord extends React.Component{
 
 
     constructor(props){
@@ -17,7 +19,6 @@ export default class AddWord extends React.Component{
         def:{},
       }
       this.fetchProg = false;
-      this.timeout = null;
     }
    
     componentDidMount(){
@@ -25,7 +26,6 @@ export default class AddWord extends React.Component{
     }
 
     componentWillMount(){
-        clearTimeout(this.timeout);
     }
    
       render(){
@@ -123,24 +123,46 @@ export default class AddWord extends React.Component{
     addWord = async() => {
       //name type pron information aka defini mnenomic
       let def = '';
-      Object.keys(this.state.def.meaning).map(key => {
-        this.state.def.meaning[key].map(val => {
-          def += val.definition;
-          if(val.example)
-            def += ' example:'+ val.example || '' + '\n';
+      const { toastManager } = this.props;
+      if(this.state.name && this.state.def){
+        Object.keys(this.state.def.meaning).map(key => {
+          this.state.def.meaning[key].map(val => {
+            def += val.definition;
+            if(val.example)
+              def += ' example:'+ val.example || '' + '\n';
+          })
         })
-      })
-      try {
-        let wordAdd = await firebaseQueries.createDoc(APP_CONSTANTS.COLLECTIONS.WORDS,{
+      
+        await firebaseQueries.createDoc(APP_CONSTANTS.COLLECTIONS.WORDS,{
           name:this.state.def.word,
           type:Object.keys(this.state.def.meaning).join(','),
           mnemonic:this.state.def.origin,
           information:def,
           pronunciation:this.state.def.phonetic,
           id:this.props.sha
-        }) 
-      } catch (error) {
-        console.error(`failede to add the word ${error}`);
+        }).then( _ => {
+          toastManager.add(`Created the word ${this.state.def.word}`, { 
+            appearance: 'info',
+            autoDismiss: true,
+            pauseOnHover: false}
+          );
+        }).catch(error => {
+          console.error(`failed to add the word ${error}`);
+          toastManager.add(`Faile to add Word ${this.state.def.word}`, { 
+            appearance: 'error',
+            autoDismiss: true,
+            pauseOnHover: false}
+          );
+        });
+      }else{
+        toastManager.add(`Enter correct word name to add `, { 
+          appearance: 'error',
+          autoDismiss: true,
+          pauseOnHover: false}
+        );
       }
-    }
+      this.props.toggleAdd();
+    } 
   }
+
+export default withToastManager(AddWord)
