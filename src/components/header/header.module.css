@@ -56,6 +56,12 @@ header a {
 .login{
     cursor: pointer;
     padding: 0.5em 2em;
+    border-radius: 30px;
+    background: #7986cb;
+}
+
+.login:hover{
+   background: #2196f3;
 }
 
 .logout{
@@ -64,6 +70,10 @@ header a {
     padding: 0.5em 2em;
     border-radius: 30px;
     cursor: pointer;
+}
+
+.logout:hover{
+   background: #2196f3;
 }
 
 @media screen and (min-width: 768px) {
