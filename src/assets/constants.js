@@ -3,6 +3,12 @@ const APP_CONSTANTS = {
         WORD_ONLY:0,
         WORD_DEF:1,
         WORD_COMP:2
+    },
+
+    COLLECTIONS:{
+        WORDLIST:'wordlist',
+        USERS:'users',
+        WORDS:'words'
     }
 }
 

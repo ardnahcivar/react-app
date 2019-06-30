@@ -1,14 +1,17 @@
 import React,{Component} from 'react';
-import Aux from './../hoc/auxy';
-import Settings from './../components/appSettings/settings';
+import Aux from './../../hoc/auxy';
+import Settings from './../../components/appSettings/settings';
 import styles from './header.module.css';
 import SettingsIcon  from 'react-icons/lib/md/settings';
-import constants  from './../assets/constants';
-import dictateService from './../services/dictateMode';
+import constants  from './../../assets/constants';
+import dictateService from './../../services/dictateMode';
 import { Link } from 'react-router-dom';
-import  Logo from './../assets/logo.svg';
+import  Logo from './../../assets/logo.svg';
+import AuthenticationContext from './../../context/auth-context';
+import firebaseService from './../../services/firebase';
 
 class Header extends Component{
+    // static authContext = AuthenticationContext;
     constructor(props){
         super(props);
         this.dictateMode = [
@@ -29,7 +32,7 @@ class Header extends Component{
 
 
     componentDidMount(){
-        
+       
     }
     
     render(){
@@ -53,9 +56,30 @@ class Header extends Component{
                     </Link>
                     <Link to="/">Home</Link>
                     <Link to="#">About</Link>
-                    <div className={styles.settingsIcon}>
-                        <SettingsIcon  onClick={this.toggleModal}/>
-                    </div>
+                    <AuthenticationContext.Consumer>
+                        {
+                            (context) => {
+                                return(
+                                    <div className={styles.details}>
+                                        { context && context.user ?
+                                            <div className={styles.user}>Hey {context && context.user && context.user.name}</div>
+                                            : null
+                                        }
+                                        {
+                                            context && context.authenticated ?
+                                            <div className={styles.logout} onClick={() => this.logout(context)  }>Logout</div>
+                                            :
+                                            <div className={styles.login} onClick={() => this.login(context)}>Login</div>
+                                        }
+                                        <div className={styles.settingsIcon}>
+                                            <SettingsIcon  onClick={this.toggleModal}/>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        }
+                    </AuthenticationContext.Consumer>
+                   
                 </header>
                 {this.state.modalOpen ? <Settings 
                 open={this.state.modalOpen} 
@@ -91,6 +115,14 @@ class Header extends Component{
             dictateService.setDictateMode(modeVal);
             console.log(this.state)
         })
+    }
+
+    login = (context) => {
+        firebaseService.userLogin(context)
+    }
+
+    logout = (context) => {
+        firebaseService.userLogout(context);
     }
 }
 

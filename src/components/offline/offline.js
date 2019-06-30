@@ -26,7 +26,6 @@ export default class Offline extends React.Component{
     }
 
     triggerTransition = () => {
-
          this.setState({
                 ...this.state,
                 transition: true
@@ -38,7 +37,6 @@ export default class Offline extends React.Component{
                 })
             },10000)
         })
-
     }
 
     render(){

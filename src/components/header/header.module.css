@@ -41,6 +41,30 @@ header a {
     margin: 0 1em;
 }
 
+.details{
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details > div{
+    display: inline-block;
+    margin: 0 0.5em;
+}
+
+.login{
+    cursor: pointer;
+    padding: 0.5em 2em;
+}
+
+.logout{
+    background: orange;
+    border-radius: 10px;
+    padding: 0.5em 2em;
+    border-radius: 30px;
+    cursor: pointer;
+}
 
 @media screen and (min-width: 768px) {
    header{
