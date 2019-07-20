@@ -11,21 +11,38 @@ const modal = (WrappedComponent) => {
                     <div className={styles.modalWrapper}>
                         <div className={styles.modal}>
                             {/* <WrappedComponent {...this.props} /> */}
+                            {
+                                this.props.title && this.props.toggleModal
+                                ?
+                                <div className={styles.modalHeader}>
+                                    <div className={styles.modalTitle}>
+                                        <p>{this.props.title}</p>   
+                                    </div>
+                                    <div className={styles.modalClose}>
+                                        <CloseIcon onClick={this.props.toggleModal} />    
+                                    </div>
+                                </div>
+                                :
+                                null
+                            }
 
-                            <div className={styles.modalHeader}>
-                                <div className={styles.modalTitle}>
-                                    <p>{this.props.title}</p>   
+                            {
+                                this.props.body 
+                                ?
+                                <div className={styles.modalBody}>
+                                    {this.props.body}
                                 </div>
-                                <div className={styles.modalClose}>
-                                    <CloseIcon onClick={this.props.toggleModal} />    
+                                :
+                                null
+                            }
+                            {
+                                this.props.toggleModal ?
+                                <div className={styles.modalFooter}>
+                                    <p className={styles.modalClosed} onClick={this.props.toggleModal}>Close</p>
                                 </div>
-                            </div>
-                            <div className={styles.modalBody}>
-                                {this.props.body}
-                            </div>
-                            <div className={styles.modalFooter}>
-                                <p className={styles.modalClosed} onClick={this.props.toggleModal}>Close</p>
-                            </div>
+                                :
+                                null
+                            }
                         </div>
                     </div>
                 )

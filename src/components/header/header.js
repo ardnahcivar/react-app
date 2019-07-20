@@ -52,7 +52,7 @@ class Header extends Component{
             <Aux>
                 <header>
                     <Link to="/">
-                        <img  className={styles.logo} src={Logo} title="Wordlist Application"/>
+                        <img alt='app logo' className={styles.logo} src={Logo} title="Wordlist Application"/>
                     </Link>
                     <Link to="/">Home</Link>
                     <Link to="#">About</Link>
@@ -71,7 +71,7 @@ class Header extends Component{
                                             :
                                             <div className={styles.login} onClick={() => this.login(context)}>Login</div>
                                         }
-                                        <div className={styles.settingsIcon}>
+                                        <div data-title='change the settings' className={[styles.settingsIcon,styles.tooltip,'tooltip'].join(' ')}>
                                             <SettingsIcon  onClick={this.toggleModal}/>
                                         </div>
                                     </div>

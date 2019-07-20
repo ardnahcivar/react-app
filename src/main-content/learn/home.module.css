@@ -62,6 +62,12 @@ input[type=text]:focus{
     color: #f44336;
 }
 
+.tooltip[data-title]:hover:after{
+    right: 0 !important;
+    left: unset !important
+}
+
+
 @media screen and (min-width: 768px) {
     #wordList{
         margin: 1em;
@@ -115,7 +121,10 @@ input[type=text]:focus{
         order:1;
     }
 
-    #wordList button{
+    .create{
+
+    }
+    #wordList .create{
         order: 2;
         width: 90%;
     }

@@ -15,6 +15,8 @@ export default class App extends Component {
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged(user => {
+      console.log(`logged user`)
+      console.dir(user)
       if(user){
           firebaseQueries.userExists(user)
           .then(querySnapshot => {

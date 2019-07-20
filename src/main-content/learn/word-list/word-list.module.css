@@ -38,23 +38,34 @@
     color: #00C853;;
 }
 
-.addWordContainer{
-    position: fixed;
-    top: 28%;
-    left: 36%;
-    background: white;
-    z-index: 99;
-}
+
 
 @media screen and (min-width: 768px) {
    .word{
         width: 20%;
    }
+   .addWordContainer{
+        position: fixed;
+        top: 28%;
+        left: 36%;
+        background: white;
+        z-index: 99;
+        color: gray;
+    }
 }
 
 @media screen and (max-width: 480px) and (orientation:portrait) {
     .word{
         width: 100%;
+    }
+    .addWordContainer{
+        position: fixed;
+        top: 28%;
+        left: 0%;
+        width: 100%;
+        background: white;
+        z-index: 99;
+        color: gray;
     }
 }
 

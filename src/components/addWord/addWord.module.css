@@ -1,84 +1,87 @@
-.createWord{
-    width:400px;
-    padding:0 1em;
-    border:1px solid gray;
-    color:#000;
-  }
-  
-  
-  .head{
+ .head{
     height:2em;
-    background:gray;
     margin-left:-1em;
     margin-right:-1em;
   }
 
   .headTitle{
-    color: white;
-    margin: 0;
-    text-align: center
+    margin: 0 1em;
   }
   
   .closeIconContainer{
     color:red;
     cursor: pointer;
+    float: right;
   }
 
-  .inputContainer{
-    display: flex;
-    align-items: center;
+  .closeIconContainer :hover{
+    border: 1px solid red;
+    border-radius: 50%;
   }
 
-  .inputB input{
-    height:1.5em;
-    margin: 1em 1em 1em 0;
+
+  .defi:hover{
+    box-shadow: 0 0 0 0.2rem rgba(72,180,97,.5) !important;
   }
 
-  .inputB .name{
-    
+  .defi:active{
+    box-shadow: 0 0 0 0.2rem rgba(72,180,97,.5) !important;
   }
 
-  .inputB .type{
-    
-  }
-  
-  .getDfBtn{
-    height: 2.5em;
-  }
-
-  .getDfBtn > button{
-    width: 5em !important;
-    background: green !important;
-    border:1px solid green !important;
+  .defi{
+    background: #28a745 !important;
+    border:1px solid #28a745 !important;
   }
 
   .addWord{
     display: inline-block;
-    height: 3em;
+    height: 2em;
+    margin: 0 0.5em;
   }
 
   .addWord svg{
     font-size: 2em;
+    cursor: pointer;
   }
-  .wordHead{
+
+  .addWord svg:hover{
+    opacity: 0.6;
   }
+
+  .dataContainer{
+    overflow: auto;
+    margin: 0 -1em;
+    padding: 0 1em;
+  }
+
+  #defSeparator{
+    margin:0 -1em;
+  }
+
+  .originContainer p {
+    margin-top: 0;
+  }
+
   .wodname{
     width: 8em;
     display: inline-block;
   }
+
   .phonetic{
     display: inline-block;
     float: right;
   }
+
   .types{
 
   }
+
   .type{
     border: 1px solid;
     display: inline-block;
     border-radius: 10px;
-    padding: 0.25em;
-    margin: 0 0.5em;
+    padding: 0 0.5em;
+    margin-right: 0.5em;
   }
   .textInputB textarea{
     width:100%;
@@ -86,3 +89,110 @@
     resize:vertical;
   }
   
+.meanContainer label{
+  font-weight: 600;
+}
+
+.meanContainer > p{
+  font-style: italic;
+  color: gray;
+}
+
+
+@media screen and (min-width: 768px) {
+  .createWord{
+    width:400px;
+    padding:0 1em;
+    border-radius: 10px;
+    border:1px solid gray;
+  }
+
+
+  .inputContainer{
+    display: flex;
+    align-items: center;
+  }
+
+  .dataContainer{
+    height: 290px;
+  }
+  
+  .inputB {
+    width: 70%;
+  }
+
+  .inputB input{
+    margin: 1em 0 !important;
+  }
+
+  .getDfBtn{
+    width: 30%;
+    height: 2.5em;
+  }
+
+  .defi{
+    width: 5em !important;
+  }
+}
+
+@media screen and (max-width: 480px) and (orientation:portrait) {
+
+  .modalWrapper{
+    position: fixed;
+    background: rgba(0, 0, 0, 0.1);
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+  }
+
+  .dataContainer{
+    height: 350px;
+  }
+  
+  .createWord{
+    width:100%;
+    border-radius: 10px;
+    border:1px solid gray;
+    background: white;
+    z-index: 12;
+    position: fixed;
+    bottom: 0;
+    margin: 0 !important;
+  }
+
+  .head{
+    padding: 0.5em;
+  }
+
+  .inputContainer .inputB{
+    /* display: flex;
+    align-items: center; */
+  }
+
+  .getDfBtn{
+    margin: 0 !important;
+  }
+
+  .inputB {
+    width: 100%;
+  }
+
+  .inputB input{
+    margin: 1em 0 !important;
+  }
+
+  .getDfBtn{
+    display: flex;
+  }
+
+  .defi{
+    width: 100%;
+    border-radius: unset !important;
+  }
+  .addWord{
+    width: 100%;
+    text-align: center;
+  }
+} 

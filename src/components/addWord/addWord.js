@@ -6,10 +6,11 @@ import AddIcon from 'react-icons/lib/md/add-circle-outline';
 import firebaseQueries from './../../services/firebase';
 import CloseIcon from  'react-icons/lib/md/close';
 import {withToastManager} from 'react-toast-notifications';
+import Modal from '../../hoc/modal';
+
 
 
 class AddWord extends React.Component{
-
 
     constructor(props){
       super(props);
@@ -17,6 +18,7 @@ class AddWord extends React.Component{
         name:'',
         type:'',
         def:{},
+        getDefCalled:false
       }
       this.fetchProg = false;
     }
@@ -28,36 +30,47 @@ class AddWord extends React.Component{
     componentWillMount(){
     }
    
+    updateDefCalled = () => {
+      this.setState({
+        ...this.state,
+        getDefCalled:!this.state.getDefCalled
+      })
+    }
+
       render(){
         return(
+          <div className={styles.modalWrapper}>
             <div className={styles.createWord}>
                 <div className={styles.head}>
-                  <p className={styles.headTitle}>Add words in {this.props.wordlist}
+                  <h3 className={styles.headTitle}>Add words in {this.props.wordlist}
                     <span className={styles.closeIconContainer} onClick={(e) => this.props.toggleAdd()}>
                       <CloseIcon />
                     </span>
-                  </p>
+                  </h3>
                 </div>
                 <div className={styles.inputContainer}>
                     <div className={styles.inputB}>
-                      <input type="text" className={styles.name} placeholder="word" value={this.state.name} onChange={this.wordNameChange}/>
+                      <input type="text" className={styles.name} placeholder="Enter the word" value={this.state.name} onChange={this.wordNameChange}/>
                       {/* <input type="text" className={styles.type} placeholder="type"/> */}
                     </div>
-                    <div className={styles.getDfBtn}>
-                      <button onClick={this.fetchDefin}>GET</button>
+                    {/* <div className={styles.getDfBtn}>
+                      <button className={styles.defi} onClick={this.fetchDefin}>GET</button>
                       <div className={styles.addWord} onClick={this.addWord}><AddIcon /></div>
-                    </div>
+                    </div> */}
                 </div>
-
+                { this.state.def && Object.keys(this.state.def).length ?
+                  <hr id={styles.defSeparator}/>
+                  : null
+                }
                 {
                   this.state.def && Object.keys(this.state.def).length
                   ?
                   <div className={styles.dataContainer}>
                   <div className={styles.wordHead}>
-                    <p className={styles.wodname}>{this.state.def.word}</p>
-                    <p className={styles.phonetic}>{this.state.def.phonetic}</p>
+                    <h4 className={styles.wodname}>{this.state.def.word}</h4>
+                    <h4 className={styles.phonetic}>{this.state.def.phonetic}</h4>
                   </div>
-                  <div>
+                  <div className={styles.originContainer}>
                     <p>{this.state.def.origin}</p>
                   </div>
                   <div className={styles.types}>
@@ -72,10 +85,33 @@ class AddWord extends React.Component{
                     Object.keys(this.state.def.meaning).map(k => {
                       return this.state.def.meaning[k].map(w => {  
                         return (
-                          <div>
-                            <p>{w.definition}</p>
-                            <p>{w.example}</p>
-                            <p>{w.synonyms}</p>
+                          <div className={styles.meanContainer}>
+                            {w.definition ?
+                            <p>
+                              <label>definition: </label>
+                              {w.definition}
+                            </p>
+                            :
+                            null
+                            }
+                            { w.example ?
+                              <p>
+                              <label>example: </label>
+                                {w.example}
+                              </p>
+                              :
+                              null
+                            }                  
+                            {
+                              w.synonyms
+                              ?
+                              <p>
+                                <label>synonyms: </label>
+                                {w.synonyms.join(' ,')}
+                              </p>
+                              :
+                              null
+                             }
                           </div>
                         )
                       })
@@ -88,6 +124,23 @@ class AddWord extends React.Component{
                   :
                   null
                 }
+                <div className={styles.getDfBtn}>
+                  {
+                    this.state.getDefCalled ?
+                    <div className={styles.addWord} onClick={this.addWord}><AddIcon /></div>
+                    :
+                    <button className={styles.defi} onClick={this.fetchDefin}>GET</button>
+                  }     
+                </div>
+                {/* {
+                  this.state.def && Object.keys(this.state.def).length 
+                  ?
+                  <div className={styles.modalWrapper}></div>
+                  :
+                  null
+                } */}
+              
+            </div>
             </div>
         )
     }
@@ -108,7 +161,8 @@ class AddWord extends React.Component{
                 console.log(data);
                 this.setState({
                     ...this.state,
-                    def:data[0]
+                    def:data[0],
+                    getDefCalled:!this.state.getDefCalled
                 })
             }
         }
@@ -165,4 +219,5 @@ class AddWord extends React.Component{
     } 
   }
 
-export default withToastManager(AddWord)
+export const AddWithModal = Modal(withToastManager(AddWord));
+export const addWordComponent = AddWord; 

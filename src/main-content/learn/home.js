@@ -170,14 +170,14 @@ class Home extends Component {
                 <div id={styles.wordList}>
                     <div className={[styles.fieldSet,styles.first].join(' ')}>
                         <input id="wordname" type="text" value={this.state.createInputText} autoComplete="off" onChange={(e) => this.createInputChange(e)} placeholder="create a wordlist" />
-                        <div className={styles.clearInputIcon} onClick={this.clearInputText}>
+                        <div data-title='clear the input text' className={[styles.clearInputIcon,'tooltip'].join(' ')} onClick={this.clearInputText}>
                             <CancelIcon />
                         </div>
                     </div>
-                    <button  onClick={(e) => this.OnAuthCallFun(e,context,this.create)}>CREATE</button>
+                    <button data-title='click to create a wordlist' className={[styles.create,'tooltip'].join(' ')} onClick={(e) => this.OnAuthCallFun(e,context,this.create)}>CREATE</button>
                     <div className={[styles.fieldSet,styles.floatRight].join(' ')}>
                         <input id={styles.searchWord}  onChange={(e) => this.Search(e) } type="text" autoComplete="off" placeholder="Search"/>
-                        <div className={styles.searchIcon}>
+                        <div data-title='searth the word' className={[styles.searchIcon,styles.tooltip,'tooltip'].join(' ')}>
                             <SearchIcon />
                         </div>
                     </div>

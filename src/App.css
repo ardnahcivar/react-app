@@ -31,3 +31,30 @@
     transform: rotate(360deg);
   }
 }
+
+/* tooltip css */
+
+
+.tooltip[data-title]:hover:after{
+  content:attr(data-title);
+  background: #474747;
+  color:#fff;
+  font-size: 13px;
+  position:absolute;
+  text-align: center;
+  left:0;
+  top:100%;
+  width:135px;
+  max-width:200px;
+  border-radius:5px;
+  padding:5px;
+  z-index: 1000;
+}
+
+::-webkit-scrollbar .tooltip[data-title]:hover:after{
+  right: 0 !important;
+}
+
+.tooltip{
+  position:relative;
+}

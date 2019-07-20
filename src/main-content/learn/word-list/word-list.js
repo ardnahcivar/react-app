@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from  './word-list.module.css';
 import AddIcon from 'react-icons/lib/md/add-circle-outline';
-import AddWord from './../../../components/addWord/addWord';
+import {AddWithModal} from './../../../components/addWord/addWord';
+import {addWordComponent} from './../../../components/addWord/addWord';
+
 import Aux from "./../../../hoc/auxy";
 import firebaseQueries from './../../../services/firebase';
 
@@ -56,7 +58,7 @@ import firebaseQueries from './../../../services/firebase';
                     return(
                             <div key={word.sha} className={styles.word} onClick={() => this.props.click(word,this.props.names)}>
                                 {word.name.replace('.json','')}
-                                    <span className={styles.wordAdd} onClick={(e)=>this.openAddWord(e,word)}><AddIcon /></span>
+                                    <span data-title='click to add the word' className={[styles.wordAdd,'tooltip'].join(' ')} onClick={(e)=>this.openAddWord(e,word)}><AddIcon /></span>
                             </div>
                         )
                     })
@@ -65,7 +67,7 @@ import firebaseQueries from './../../../services/firebase';
             {
                 this.state.open ?
                 <div className={styles.addWordContainer}>
-                    <AddWord toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
+                    <AddWithModal body= {<addWordComponent />} toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
                 </div>
                 :
                 null
