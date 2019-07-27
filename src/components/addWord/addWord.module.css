@@ -1,5 +1,6 @@
  .head{
     height:2em;
+    padding: 0.5em;
     margin-left:-1em;
     margin-right:-1em;
   }
@@ -45,7 +46,8 @@
   }
 
   .addWord svg:hover{
-    opacity: 0.6;
+    /* opacity: 0.6; */
+    transform: scale(1.5);
   }
 
   .dataContainer{
@@ -56,6 +58,7 @@
 
   #defSeparator{
     margin:0 -1em;
+    visibility: hidden;
   }
 
   .originContainer p {
@@ -101,16 +104,17 @@
 
 @media screen and (min-width: 768px) {
   .createWord{
-    width:400px;
+    /* width:400px; */
     padding:0 1em;
     border-radius: 10px;
-    border:1px solid gray;
+    /* border:1px solid gray; */
   }
 
 
   .inputContainer{
     display: flex;
     align-items: center;
+    justify-content: space-around;
   }
 
   .dataContainer{
@@ -123,15 +127,17 @@
 
   .inputB input{
     margin: 1em 0 !important;
+    border-radius: 0 !important
   }
 
   .getDfBtn{
-    width: 30%;
-    height: 2.5em;
+    text-align: center;
+    padding: 0.5em;
   }
 
   .defi{
     width: 5em !important;
+    border-radius: 0 !important;
   }
 }
 

@@ -52,7 +52,8 @@ class Header extends Component{
             <Aux>
                 <header>
                     <Link to="/">
-                        <img alt='app logo' className={styles.logo} src={Logo} title="Wordlist Application"/>
+                        <p id={styles.title}>Wordlist</p>
+                        {/* <img alt='app logo' className={styles.logo} src={Logo} title="Wordlist Application"/> */}
                     </Link>
                     <Link to="/">Home</Link>
                     <Link to="#">About</Link>

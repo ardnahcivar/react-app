@@ -84,8 +84,12 @@ header a {
 @media screen and (min-width: 768px) {
    header{
        height: 60px;
+       display: flex;
    }
-   
+   .details{
+       position: absolute;
+       right: 0;
+   }
    .settingsIcon{
        padding: 1em;
    }
@@ -95,6 +99,10 @@ header a {
         width: 50px;
         vertical-align: middle;
         margin: 0.25em 0;
+    }
+    #title{
+        margin: 0;
+        font-size: 34px
     }
 }
 

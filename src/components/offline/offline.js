@@ -49,9 +49,12 @@ export default class Offline extends React.Component{
         const toolBar = <p >{this.state.onlineState} </p>;
         return(
             <Aux>
-                <div id={styles.onLineStatus} className={classes.join(' ') }>
-                    { toolBar }
-                </div>
+                {this.state.isOnLine ? null :
+                   <div id={styles.onLineStatus} className={classes.join(' ') }>
+                    {toolBar }
+                    </div>
+                }
+                
             </Aux>
         )
     }

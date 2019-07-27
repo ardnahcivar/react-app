@@ -57,8 +57,8 @@ import firebaseQueries from './../../../services/firebase';
                 this.props.names.map((word) => {
                     return(
                             <div key={word.sha} className={styles.word} onClick={() => this.props.click(word,this.props.names)}>
-                                {word.name.replace('.json','')}
-                                    <span data-title='click to add the word' className={[styles.wordAdd,'tooltip'].join(' ')} onClick={(e)=>this.openAddWord(e,word)}><AddIcon /></span>
+                                <p>{word.name.replace('.json','')}</p>
+                                <span data-title='click to add the word' className={[styles.wordAdd,'tooltip'].join(' ')} onClick={(e)=>this.openAddWord(e,word)}><AddIcon /></span>
                             </div>
                         )
                     })
@@ -67,7 +67,7 @@ import firebaseQueries from './../../../services/firebase';
             {
                 this.state.open ?
                 <div className={styles.addWordContainer}>
-                    <AddWithModal body= {<addWordComponent />} toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
+                    <AddWithModal toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
                 </div>
                 :
                 null

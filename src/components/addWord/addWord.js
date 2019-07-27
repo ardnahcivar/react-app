@@ -51,8 +51,9 @@ class AddWord extends React.Component{
                 <div className={styles.inputContainer}>
                     <div className={styles.inputB}>
                       <input type="text" className={styles.name} placeholder="Enter the word" value={this.state.name} onChange={this.wordNameChange}/>
-                      {/* <input type="text" className={styles.type} placeholder="type"/> */}
                     </div>
+                    <button className={styles.defi} onClick={this.fetchDefin}>GET</button>
+
                     {/* <div className={styles.getDfBtn}>
                       <button className={styles.defi} onClick={this.fetchDefin}>GET</button>
                       <div className={styles.addWord} onClick={this.addWord}><AddIcon /></div>
@@ -129,7 +130,7 @@ class AddWord extends React.Component{
                     this.state.getDefCalled ?
                     <div className={styles.addWord} onClick={this.addWord}><AddIcon /></div>
                     :
-                    <button className={styles.defi} onClick={this.fetchDefin}>GET</button>
+                    null
                   }     
                 </div>
                 {/* {

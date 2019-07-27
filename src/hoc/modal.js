@@ -33,7 +33,7 @@ const modal = (WrappedComponent) => {
                                     {this.props.body}
                                 </div>
                                 :
-                                null
+                                <WrappedComponent {...this.props}/>
                             }
                             {
                                 this.props.toggleModal ?
