@@ -9,7 +9,7 @@ const modal = (WrappedComponent) => {
             render(){
                 return(
                     <div className={styles.modalWrapper}>
-                        <div className={styles.modal}>
+                        <div className={this.props.bottom?null :styles.modal}>
                             {/* <WrappedComponent {...this.props} /> */}
                             {
                                 this.props.title && this.props.toggleModal

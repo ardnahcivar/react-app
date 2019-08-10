@@ -9,8 +9,8 @@ import AuthenticationContext from './context/auth-context';
 import firebase from './assets/firebase';
 import firebaseQueries from './services/firebase';
 import {ToastProvider} from 'react-toast-notifications';
-
-
+import isMobile from './services/checkDevice';
+import Footer from './components/footer/footer';
 export default class App extends Component {
 
   componentDidMount(){
@@ -62,6 +62,7 @@ export default class App extends Component {
             <Offline />
             <Header />
             <Main />
+            <Footer />
           </Aux>
         </BrowserRouter>
         <div id="snackbar"></div>

@@ -67,7 +67,7 @@ import firebaseQueries from './../../../services/firebase';
             {
                 this.state.open ?
                 <div className={styles.addWordContainer}>
-                    <AddWithModal toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
+                    <AddWithModal bottom={true} toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
                 </div>
                 :
                 null

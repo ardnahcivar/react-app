@@ -1,0 +1,83 @@
+@media screen and (min-width: 768px) {
+  
+}
+
+@media screen and (max-width: 480px) and (orientation:portrait) {
+  .sideBar{
+        position: fixed;
+        top:0;
+        bottom: 0;
+        right: 0;
+        width: 65%;
+        background: #f8f9fa;
+        height: 100%;
+        z-index: 999;
+        color: black;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+  .hamIcon{
+        float: right;
+        margin: 0 0.25em;
+        font-size: 2em;
+    }
+    .actions{
+        display: block;
+    }
+    .close{
+        display:inline-block;
+        font-size: 2em;
+        margin: 0 0.25em;
+    }
+    .profile{
+        margin: 1em 0;
+        font-size: 2em;
+    }
+
+    .profile p{
+        text-align: center;
+        margin: 0;
+    }
+
+    button{
+        width: 90%;
+        text-align: center;
+        margin: 3em auto;
+        height: 2em;
+        color: white;
+        display: flex;
+        border: none;
+        outline: none;
+        justify-content: center
+    }
+
+    .logout{
+        background: red;
+    }
+
+    .login{
+        background: cornflowerblue;
+    }
+
+    .listItems{
+
+    }
+    .listItems ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .listItems a{
+        color: black;
+    }
+
+    .listItems li{
+        text-align: center;
+        font-size: 1.25em; 
+        padding: 0.25em 0;
+        cursor: pointer;
+    }
+    .listItems li:active{
+        background: cornflowerblue;
+        color: white;
+    }
+}

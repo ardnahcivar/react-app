@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component,Fragment} from 'react';
 import Aux from './../../hoc/auxy';
 import Settings from './../../components/appSettings/settings';
 import styles from './header.module.css';
@@ -6,9 +6,10 @@ import SettingsIcon  from 'react-icons/lib/md/settings';
 import constants  from './../../assets/constants';
 import dictateService from './../../services/dictateMode';
 import { Link } from 'react-router-dom';
-import  Logo from './../../assets/logo.svg';
 import AuthenticationContext from './../../context/auth-context';
 import firebaseService from './../../services/firebase';
+import isMobile from './../../services/checkDevice';
+import SideBar from './../../components/sidebar/sidebar';
 
 class Header extends Component{
     // static authContext = AuthenticationContext;
@@ -19,7 +20,6 @@ class Header extends Component{
             {value:constants.DICTATEMODE.WORD_DEF,checked:false,name:'Word with Definition'},
             {value:constants.DICTATEMODE.WORD_COMP,checked:false,name:'Word with Complete Info'}
         ];
-
         new dictateService();
         let mode = dictateService.getDicatateMode();
         this.dictateMode[parseInt(mode)].checked = true; 
@@ -30,11 +30,6 @@ class Header extends Component{
         }
     }
 
-
-    componentDidMount(){
-       
-    }
-    
     render(){
         let checkList = this.state.dictateMode.map(k => {
             return(
@@ -55,12 +50,11 @@ class Header extends Component{
                         <p id={styles.title}>Wordlist</p>
                         {/* <img alt='app logo' className={styles.logo} src={Logo} title="Wordlist Application"/> */}
                     </Link>
-                    <Link to="/">Home</Link>
-                    <Link to="#">About</Link>
                     <AuthenticationContext.Consumer>
                         {
                             (context) => {
-                                return(
+                                if(!isMobile)
+                                    return(                                    
                                     <div className={styles.details}>
                                         { context && context.user ?
                                             <div className={styles.user}>Hey {context && context.user && context.user.name}</div>
@@ -76,6 +70,20 @@ class Header extends Component{
                                             <SettingsIcon  onClick={this.toggleModal}/>
                                         </div>
                                     </div>
+                                )
+                                else return(        
+                                        isMobile ? 
+                                        <SideBar
+                                            user={context} 
+                                            settings={this.toggleModal}
+                                            login={this.login}
+                                            logout={this.logout}
+                                        />
+                                        :
+                                        <Fragment>
+                                            <Link to="/">Home</Link>
+                                            <Link to="#">About</Link>
+                                        </Fragment>
                                 )
                             }
                         }
