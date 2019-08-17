@@ -2,6 +2,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Deployed URL
 see  the application at https://react-word-2aaf5.firebaseapp.com , project is in Progress
 
+## Screens
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Homescreen](./app-screens/rsz_home.jpg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+![Wordlist](./app-screens/rsz_wordlist.jpg)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Addword](./app-screens/rsz_addword.jpg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+![Settings](./app-screens/rsz_settings.jpg)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Word](./app-screens/rsz_add.jpg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+![Meaning](./app-screens/rsz_meaning.jpg)
+
 ## Available Scripts
 
 In the project directory, you can run:

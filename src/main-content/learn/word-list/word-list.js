@@ -3,7 +3,7 @@ import styles from  './word-list.module.css';
 import AddIcon from 'react-icons/lib/md/add-circle-outline';
 import {AddWithModal} from './../../../components/addWord/addWord';
 import {addWordComponent} from './../../../components/addWord/addWord';
-
+import isMobile from './../../../services/checkDevice';
 import Aux from "./../../../hoc/auxy";
 import firebaseQueries from './../../../services/firebase';
 
@@ -67,7 +67,7 @@ import firebaseQueries from './../../../services/firebase';
             {
                 this.state.open ?
                 <div className={styles.addWordContainer}>
-                    <AddWithModal bottom={true} toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
+                    <AddWithModal bottom={isMobile} toggleAdd={this.toggleAddWord} wordlist={this.state.wordlist} sha={this.state.sha}/>
                 </div>
                 :
                 null

@@ -30,6 +30,8 @@
   }
 
   .defi{
+    margin: 0 auto !important;
+    width:90% !important;
     background: #28a745 !important;
     border:1px solid #28a745 !important;
   }
@@ -91,14 +93,16 @@
     box-sizing:border-box;
     resize:vertical;
   }
-  
+.meanContainer{
+  height: 225px;
+  overflow-y: auto;
+}  
 .meanContainer label{
   font-weight: 600;
 }
-
-.meanContainer > p{
-  font-style: italic;
+.originContainer p,.meanContainer > p{
   color: gray;
+  padding: 0 2em;
 }
 
 
@@ -127,7 +131,8 @@
 
   .inputB input{
     margin: 1em 0 !important;
-    border-radius: 0 !important
+    border-radius: 0 !important;
+    font-size: 16px;
   }
 
   .getDfBtn{
@@ -155,11 +160,15 @@
 
   .dataContainer{
     height: 350px;
+    font-size: 18px;
   }
-  
+  .wordHead,.types{
+    padding: 0 2em;
+  }  
   .createWord{
     width:100%;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border:1px solid gray;
     background: white;
     z-index: 12;
