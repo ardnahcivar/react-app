@@ -1,6 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Deployed URL
 see  the application at https://react-word-2aaf5.firebaseapp.com , project is in Progress
+## Introduction
+
+Word List with Learn and Practice Modes
+
+Start with learn mode and practice the words which you have learned with Practice mode
+
+## Features
+
+* Learn Mode
+* Practice Mode
+* Dictate Mode
+* create youe own Word List 
 
 ## Screens
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
